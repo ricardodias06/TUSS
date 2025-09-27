@@ -1,4 +1,14 @@
 /* ================================================
+   FONTES
+================================================ */
+@font-face {
+  font-family: "Papyrus";
+  src: url('../assets/fonts/papyrus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ================================================
    RESET BÁSICO
 ================================================ */
 * {
@@ -12,7 +22,7 @@
 ================================================ */
 html, body {
   height: 100%;
-  font-family: "Funnel Display", sans-serif;
+  font-family: "Papyrus", sans-serif;
   background: #f4f4f4;
   color: #222;
   display: flex;
