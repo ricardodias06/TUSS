@@ -1,0 +1,236 @@
+/* ===== Reset básico ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Fonte principal ===== */
+html, body {
+  height: 100%;
+  font-family: "Funnel Display", sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Main ===== */
+main {
+  flex: 1; /* ocupa todo o espaço restante acima do footer */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  width: 100%;
+  background: #B1D566;
+  padding: 0.8rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo img {
+  height: 45px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-links li {
+  position: relative;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #303030;
+}
+
+/* Dropdown */
+.navbar-links li:hover ul {
+  display: block;
+}
+
+.navbar-links li ul {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: #004a8d;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+}
+
+.navbar-links li ul li {
+  width: 180px;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-links li ul li a {
+  color: white;
+  font-weight: normal;
+}
+
+.navbar-links li ul li a:hover {
+  color: #303030;
+}
+
+/* Botão hambúrguer */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.navbar-toggle span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+  flex: 1; /* ocupa todo o espaço restante acima do footer */
+  background-image: url('../assets/game-screenshots/bus-cimo-vila.png');
+  background-size: cover;       /* cobre toda a área, sem bordas */
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Texto sobre a imagem */
+.hero-text {
+  text-align: center;
+  z-index: 1;
+  color: #ffffff;
+  background: rgba(177,213,102,0.75); /* fundo semi-transparente para legibilidade :nerd: */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: #B1D566;
+  color: white;
+  padding: 20px;
+}
+
+/* ===== Footer interno ===== */
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-logo img {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.footer-column h4 {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #303030;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #303030;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+}
+
+/* ===== Tipografia ===== */
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+p, li, a {
+  font-weight: 400;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  .navbar-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #B1D566;
+    flex-direction: column;
+    width: 200px;
+    display: none;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .navbar-links li {
+    margin-bottom: 10px;
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-column, .footer-logo {
+    margin: auto;
+  }
+
+  .hero-section {
+    height: auto;
+    background-size: cover;
+  }
+}
