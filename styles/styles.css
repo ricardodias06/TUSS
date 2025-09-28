@@ -29,14 +29,8 @@ html, body {
   flex-direction: column;
 }
 
-/* Tipografia geral */
-h1, h2, h3, h4 {
-  font-weight: 700;
-}
-
-p, li, a {
-  font-weight: 400;
-}
+h1, h2, h3, h4 { font-weight: 700; }
+p, li, a { font-weight: 400; }
 
 /* ================================================
    MAIN
@@ -71,10 +65,13 @@ main {
   height: 45px;
 }
 
+/* Links da navbar */
 .navbar-links {
-  list-style: none;
+  list-style: none; /* remove bullets */
   display: flex;
   gap: 2rem;
+  padding-left: 0;
+  margin: 0;
 }
 
 .navbar-links li {
@@ -93,20 +90,25 @@ main {
 }
 
 /* Dropdown */
-.navbar-links li:hover ul {
-  display: block;
-}
-
 .navbar-links li ul {
-  display: none;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
-  top: 40px;
-  left: 0;
-  background: #004a8d;
+  top: calc(100% + 30px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #B1D566;
   padding: 0.5rem 0;
   border-radius: 5px;
+  
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* Itens do dropdown */
 .navbar-links li ul li {
   width: 180px;
   padding: 0.5rem 1rem;
@@ -121,6 +123,14 @@ main {
   color: #303030;
 }
 
+/* Mostrar dropdown com fade */
+.navbar-links li:hover ul,
+.navbar-links li:focus-within ul {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Botão hamburguer (PC não usado) */
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -297,52 +307,19 @@ main {
 }
 
 /* Cores das linhas */
-.line-1 { background: var(--line-5, #0d89be); }
+.line-1 { background: var(--line-1, #0d89be); }
 .line-5 { background: var(--line-5, #cd0000); }
 .line-6 { background: var(--line-6, #ae2057); }
 .line-7 { background: var(--line-7, #46bdc6); }
 .line-13 { background: var(--line-13, #34a853); }
 .line-14 { background: var(--line-14, #cbff4d); color: #000; }
-.line-15 { background: var(--line-13, #ffaec9); color: #000; }
+.line-15 { background: var(--line-15, #ffaec9); color: #000; }
 .line-18 { background: var(--line-18, #f1c232); color: #000; }
-.line-24 { background: var(--line-13, #7b6a54); }
-.line-S1 { background: var(--line-13, #e28000); }
+.line-S1 { background: var(--line-S1, #e28000); }
 
 /* ================================================
-   RESPONSIVIDADE
+   RESPONSIVIDADE SÓ PC
 ================================================ */
-@media (max-width: 768px) {
-  .navbar-links { 
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: #B1D566;
-    flex-direction: column;
-    width: 200px;
-    display: none;
-    padding: 10px;
-    border-radius: 0 0 10px 10px;
-  }
-  .navbar-links li { margin-bottom: 10px; }
-  .navbar-toggle { display: flex; }
-  .navbar-links.active { display: flex; }
-
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    text-align: center;
-  }
-  .footer-column, .footer-logo { margin: auto; }
-
-  .homepage-section {
-    height: auto;
-    background-size: cover;
-  }
-
-  .lines-grid { grid-template-columns: 1fr; }
-}
-
-/* Responsividade colunas linhas */
 @media (min-width: 1200px) { .lines-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (min-width: 992px) and (max-width: 1199px) { .lines-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 768px) and (max-width: 991px) { .lines-grid { grid-template-columns: repeat(2, 1fr); } }

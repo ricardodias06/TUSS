@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Carregar navbar
-  fetch("../components/navbar.html")
+  fetch("../../components/navbar.html")
     .then(response => response.text())
     .then(data => {
       document.getElementById("navbar-container").innerHTML = data;
@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   // Carregar footer
-  fetch("../components/footer.html")
+  fetch("../../components/footer.html")
     .then(response => response.text())
     .then(data => {
       document.getElementById("footer-container").innerHTML = data;
     });
 });
 
-// ===== Pesquisa de linhas =====
+// Pesquisa de linhas
 const searchInput = document.getElementById('line-search');
 const linesGrid = document.getElementById('lines-grid');
 
