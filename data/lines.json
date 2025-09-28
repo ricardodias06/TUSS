@@ -1,0 +1,40 @@
+{
+  "5": {
+    "nome": "Jardim do Império - Canelas",
+    "origem": "Jardim do Império",
+    "destino": "Canelas",
+    "paragens": [
+      "Jardim do Império",
+      "Paragem 2",
+      "Paragem 3",
+      "Paragem x",
+      "Canelas"
+    ]
+  },
+
+  "6": {
+    "nome": "Mercado Municipal - Moinho (Estação)",
+    "origem": "Mercado Municipal",
+    "destino": "Moinho (Estação)",
+    "paragens": [
+      "Mercado Municipal",
+      "Paragem 2",
+      "Paragem 3",
+      "Paragem x",
+      "Moinho (Estação)"
+    ]
+  },
+
+  "7": {
+    "nome": "Santa Cruz - Moinho (Estação)",
+    "origem": "Santa Cruz",
+    "destino": "Moinho (Estação)",
+    "paragens": [
+      "Santa Cruz",
+      "Paragem 2",
+      "Paragem 3",
+      "Paragem x",
+      "Moinho (Estação)"
+    ]
+  }
+}

@@ -27,19 +27,19 @@
       </a>
 
       <!-- Linha 5 -->
-      <a href="#" class="line-card line-5" data-number="5" data-name="Jardim do Império <> Canelas">
+      <a href="linhas.html?line=5" class="line-card line-5" data-number="5" data-name="Jardim do Império <> Canelas">
         <span class="line-number">5</span>
         <span class="line-name">Jardim do Império &lt;&gt; Canelas</span>
       </a>
 
       <!-- Linha 6 -->
-      <a href="#" class="line-card line-6" data-number="6" data-name="Mercado Municipal <> Moinho (Estação)">
+      <a href="linhas.html?line=6" class="line-card line-6" data-number="6" data-name="Mercado Municipal <> Moinho (Estação)">
         <span class="line-number">6</span>
         <span class="line-name">Mercado Municipal &lt;&gt; Moinho (Estação)</span>
       </a>
 
       <!-- Linha 7 -->
-      <a href="#" class="line-card line-7" data-number="7" data-name="Santa Cruz <> Moinho (Estação)">
+      <a href="linhas.html?line=7" class="line-card line-7" data-number="7" data-name="Santa Cruz <> Moinho (Estação)">
         <span class="line-number">7</span>
         <span class="line-name">Santa Cruz &lt;&gt; Moinho (Estação)</span>
       </a>
@@ -74,10 +74,20 @@
         <span class="line-name">Shuttle Estádio Municipal</span>
       </a>
     </section>
+
+    <section class="line-details" id="line-details" style="display:none;">
+      <h2 id="linha-nome"></h2>
+      <p><strong>Origem:</strong> <span id="linha-origem"></span></p>
+      <p><strong>Destino:</strong> <span id="linha-destino"></span></p>
+      <h3>Paragens</h3>
+      <ul id="linha-paragens"></ul>
+    </section>
   </main>
 
   <div id="footer-container"></div>
   <script src="../../scripts/script.js"></script>
   <script src="../../scripts/lang-switch.js" defer></script>
+  <script src="../../scripts/line-loader.js"></script>
+
 </body>
 </html>
