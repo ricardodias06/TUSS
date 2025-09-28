@@ -1,28 +1,50 @@
-const pageMap = {
-  '/pages/pt/index.html': '/pages/en/index.html',
-  '/pages/pt/linhas.html': '/pages/en/lines.html',
-  '/pages/pt/sobre.html': '/pages/en/about.html',
-  '/pages/pt/contactos.html': '/pages/en/contacts.html',
-};
+document.addEventListener("DOMContentLoaded", () => {
+  const langBtn = document.getElementById("lang-btn");
+  if (!langBtn) return;
 
-const reversePageMap = Object.fromEntries(
-  Object.entries(pageMap).map(([pt, en]) => [en, pt])
-);
+  // Mapas PT ↔ EN
+  const ptToEn = {
+    "index.html": "index.html",
+    "linhas.html": "lines.html",
+    "planear-viagem.html": "plan-a-trip.html",
+    "alteracoes-de-servico.html": "service-changes.html",
+    "paragem.html": "stop.html",
+    "tarifario.html": "tariff.html",
+    "acessibilidade.html": "accessibility.html"
+  };
 
-const langToggle = document.getElementById('lang-toggle');
+  const enToPt = Object.fromEntries(
+    Object.entries(ptToEn).map(([pt, en]) => [en, pt])
+  );
 
-langToggle.addEventListener('click', () => {
-  const currentUrl = window.location.pathname;
+  // Detectar idioma atual
+  const path = window.location.pathname; // ex: /pages/pt/linhas.html
+  const parts = path.split("/");          // ["", "pages", "pt", "linhas.html"]
+  const currentLang = parts[2];           // "pt" ou "en"
+  const file = parts[3];                  
 
-  let newUrl;
+  // Atualizar texto do botão
+  langBtn.textContent = currentLang === "pt" ? "EN" : "PT";
 
-  if(currentUrl in pageMap) {
-    newUrl = pageMap[currentUrl];
-  } else if(currentUrl in reversePageMap) {
-    newUrl = reversePageMap[currentUrl];
-  } else {
-    newUrl = '/pages/pt/index.html';
-  }
+  langBtn.addEventListener("click", () => {
+    let targetFile;
 
-  window.location.href = newUrl;
+    if (currentLang === "pt") {
+      targetFile = ptToEn[file];
+      if (!targetFile) { alert("Não há versão em inglês desta página."); return; }
+      parts[2] = "en";
+      parts[3] = targetFile;
+    } else if (currentLang === "en") {
+      targetFile = enToPt[file];
+      if (!targetFile) { alert("Não há versão em português desta página."); return; }
+      parts[2] = "pt";
+      parts[3] = targetFile;
+    } else {
+      alert("Idioma desconhecido.");
+      return;
+    }
+
+    const newPath = parts.join("/");
+    window.location.href = newPath;
+  });
 });
