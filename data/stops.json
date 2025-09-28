@@ -1,0 +1,506 @@
+{
+  "MMC1": {
+    "nome": "Mercado Municipal",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "SES1": {
+    "nome": "São Sebastião (Est.)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "JIM": {
+    "nome": "Jardim do Império",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "PVM": {
+    "nome": "Pavilhão Municipal",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "BV": {
+    "nome": "Bombeiros Voluntários",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "OFM": {
+    "nome": "Oficinas Municipais",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "RGL1": {
+    "nome": "Rua Gavião Lopes (N)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "BRT1": {
+    "nome": "Barreto",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "RAN": {
+    "nome": "Rua Adriano Nery",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "TVC": {
+    "nome": "Travessa da Cruzinha",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "HMO": {
+    "nome": "Herdade do Moinho",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ALB": {
+    "nome": "Alto da Bica",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "PPT": {
+    "nome": "Praia da Pontinha",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CBV": {
+    "nome": "Cabine Velha",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "MES": {
+    "nome": "Moinho (Estação C.F.)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "JFM": {
+    "nome": "J.F. Moinho",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ALC": {
+    "nome": "Alameda de Camões",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "MRT": {
+    "nome": "Moinho (Rotunda)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "BRP": {
+    "nome": "Bairro da Represa",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "BRM": {
+    "nome": "Barragem do Moinho",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CRP": {
+    "nome": "Canelas Retail Park",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "AVE": {
+    "nome": "Avenida da Europa",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CES": {
+    "nome": "Canelas (Escola)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CAN": {
+    "nome": "Canelas",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "RBL": {
+    "nome": "Rua Beltrano Lopes",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "MIG": {
+    "nome": "Moinho (Prç. da Igreja)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "RFU": {
+    "nome": "Rua do Funchal",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "PFG": {
+    "nome": "Praça da Figueira",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "HCA1": {
+    "nome": "ULS Canelas",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "JFC": {
+    "nome": "JF Canelas",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "TVCO": {
+    "nome": "Travessa do Couto",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ESG": {
+    "nome": "Espregueira",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "SER": {
+    "nome": "Serrinha",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CRZ": {
+    "nome": "Cruzeiro",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "TVO": {
+    "nome": "Travessa do Olival",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CVL": {
+    "nome": "Cimo de Vila",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "PAR": {
+    "nome": "Ponte Agostinho Rosa",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "SGL1": {
+    "nome": "Santa Glória",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CAL": {
+    "nome": "Calvário",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CRN": {
+    "nome": "C.dador Rui Nabeiro",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "SCR": {
+    "nome": "Santa Cruz",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ERT": {
+    "nome": "E. S. Raposo Tavares",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "VDA": {
+    "nome": "Visconde de Alvalade",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "GDS": {
+    "nome": "Gomes da Silva",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "RCC": {
+    "nome": "Rua Curry Cabral",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "LGB": {
+    "nome": "Largo do Barreiro",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "TQ": {
+    "nome": "Travessa de Quelhas",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CMO": {
+    "nome": "Cemitério de Moreira",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "FDP": {
+    "nome": "Faculdade de Desporto",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "EMU": {
+    "nome": "Estádio Municipal",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "JFMO": {
+    "nome": "J. F. Moreira",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "MMM": {
+    "nome": "Mercado de Moreira",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "MRC": {
+    "nome": "Moreira (Centro)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "BFR": {
+    "nome": "Bairro dos Ferroviários",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CUC": {
+    "nome": "Cucujães",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "POU": {
+    "nome": "Parque do Outeiro",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CHO": {
+    "nome": "Centro Hosp. Outeiro",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CAT": {
+    "nome": "Catarina de Andrade",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CAS": {
+    "nome": "Castanhal",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "PMU": {
+    "nome": "Piscinas Municipais",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "SGS": {
+    "nome": "Santa Glória (Sul)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "OUT": {
+    "nome": "Outeiro",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "RBE": {
+    "nome": "Rua de Berna",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "SCS": {
+    "nome": "Santa Cruz (Shopping)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "GSI2": {
+    "nome": "Gomes da Silva",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ARE": {
+    "nome": "Areosa",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ABZ": {
+    "nome": "Abel Salazar",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "STC1": {
+    "nome": "Santa Cruz",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "MCE": {
+    "nome": "Moinho (Centro)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "DNA": {
+    "nome": "David Nascimento",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "SGLR": {
+    "nome": "Santa Glória (Rotunda)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "AMR": {
+    "nome": "Amália Rodrigues",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "BHO": {
+    "nome": "Bairro do Hospital",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ROS": {
+    "nome": "Rosário",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "CASE": {
+    "nome": "Castanhal (ESCOLA)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "EMU1": {
+    "nome": "Estádio Municipal",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "RDV": {
+    "nome": "Rua da Vidigueira",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ABR": {
+    "nome": "Alto do Barreiro",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "UAN": {
+    "nome": "Urb. Agra Nova",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "BMO": {
+    "nome": "Boi Morto",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "JHE": {
+    "nome": "Joaquim Herculano",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "HCA2": {
+    "nome": "Canelas (Hospital)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "HCA3": {
+    "nome": "H. Canelas (C. Externa)",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  },
+  "ASGL": {
+    "nome": "Alameda Santa Glória",
+    "zona": null,
+    "lat": null,
+    "lng": null
+  }
+}

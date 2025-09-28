@@ -1,40 +1,103 @@
 {
   "5": {
     "nome": "Jardim do Império - Canelas",
-    "origem": "Jardim do Império",
-    "destino": "Canelas",
-    "paragens": [
-      "Jardim do Império",
-      "Paragem 2",
-      "Paragem 3",
-      "Paragem x",
-      "Canelas"
-    ]
+    "sentidos": {
+      "0": {
+        "origem": "JIM",
+        "destino": "HCA2",
+        "paragens": [
+          "JIM",
+          "DNA",
+          "CAL",
+          "SGLR",
+          "AMR",
+          "CUC",
+          "POU",
+          "CHO",
+          "BHO",
+          "ROS",
+          "CAT",
+          "CASE",
+          "EMU1",
+          "FDP",
+          "RDV",
+          "ABR",
+          "UAN",
+          "BMO",
+          "JHE",
+          "HCA2"
+        ]
+      },
+      "1": {
+        "origem": "HCA2",
+        "destino": "JIM",
+        "paragens": [
+          "HCA2",
+          "HCA3",
+          "JHE",
+          "BMO",
+          "UAN",
+          "ABR",
+          "RDV",
+          "FDP",
+          "EMU1",
+          "CAS",
+          "CAT",
+          "BHO",
+          "CHO",
+          "SGS",
+          "ASGL",
+          "CAL",
+          "DNA",
+          "JIM"
+        ]
+      }
+    }
   },
-
   "6": {
     "nome": "Mercado Municipal - Moinho (Estação)",
-    "origem": "Mercado Municipal",
-    "destino": "Moinho (Estação)",
-    "paragens": [
-      "Mercado Municipal",
-      "Paragem 2",
-      "Paragem 3",
-      "Paragem x",
-      "Moinho (Estação)"
-    ]
-  },
-
-  "7": {
-    "nome": "Santa Cruz - Moinho (Estação)",
-    "origem": "Santa Cruz",
-    "destino": "Moinho (Estação)",
-    "paragens": [
-      "Santa Cruz",
-      "Paragem 2",
-      "Paragem 3",
-      "Paragem x",
-      "Moinho (Estação)"
-    ]
+    "sentidos": {
+      "0": {
+        "origem": "MMC1",
+        "destino": "MES",
+        "paragens": [
+          "MMC1",
+          "SES1",
+          "JIM",
+          "PVM",
+          "BV",
+          "OFM",
+          "RGL1",
+          "BRT1",
+          "RAN",
+          "TVC",
+          "HMO",
+          "ALB",
+          "PPT",
+          "CBV",
+          "MES"
+        ]
+      },
+      "1": {
+        "origem": "MES",
+        "destino": "MMC1",
+        "paragens": [
+          "MES",
+          "CBV",
+          "PPT",
+          "ALB",
+          "HMO",
+          "TVC",
+          "RAN",
+          "BRT1",
+          "RGL1",
+          "OFM",
+          "BV",
+          "PVM",
+          "JIM",
+          "MMC1"
+        ]
+      }
+    }
   }
 }
