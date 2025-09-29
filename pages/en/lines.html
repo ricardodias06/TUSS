@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TUSS &bull; Lines</title>
-  <link rel="icon" href="../../assets/tuss-logos/tuss-stripes.png" type="image/x-icon">
+  <link rel="icon" href="/assets/tuss-logos/tuss-stripes.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../styles/styles.css">
+  <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
 <body>
@@ -74,10 +74,20 @@
         <span class="line-name">Shuttle Estádio Municipal</span>
       </a>
     </section>
+
+    <section class="line-details" id="line-details" style="display:none;">
+      <h2 id="linha-nome"></h2>
+      <p><strong>Origem:</strong> <span id="linha-origem"></span></p>
+      <p><strong>Destino:</strong> <span id="linha-destino"></span></p>
+      <h3>Paragens</h3>
+      <ul id="linha-paragens"></ul>
+    </section>
   </main>
 
   <div id="footer-container"></div>
-  <script src="../../scripts/script.js"></script>
-  <script src="../../scripts/lang-switch.js" defer></script>
+  <script src="/scripts/script.js"></script>
+  <script src="/scripts/lang-switch.js" defer></script>
+  <script src="/scripts/line-loader.js"></script>
+  
 </body>
 </html>
