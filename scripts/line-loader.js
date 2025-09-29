@@ -1,41 +1,57 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const lineId = params.get("line");
+// line-loader.js
+(function () {
+  "use strict";
 
-  if (!lineId) return; // Se não houver ?line=ID, mostra só os cartões
+  document.addEventListener("csv:loaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const lineId = params.get("line");
 
-  // Esconde a grelha de cartões
-  document.getElementById("lines-grid").style.display = "none";
+    if (!lineId || !window.LINE_MAPPINGS || !window.LINE_MAPPINGS[lineId]) {
+      console.error("[line-loader] Linha inválida ou não mapeada:", lineId);
+      document.getElementById("line-content").innerHTML =
+        `<p>Não foi possível carregar os dados da linha.</p>`;
+      return;
+    }
 
-  // Mostra a área de detalhes
-  const detailsSection = document.getElementById("line-details");
-  detailsSection.style.display = "block";
+    const lineData = window.LINE_MAPPINGS[lineId];
 
-  // Carregar JSON
-  fetch("/data/lines.json")
-    .then(res => res.json())
-    .then(data => {
-      const linha = data[lineId];
-      if (!linha) {
-        document.getElementById("linha-nome").textContent = "Linha não encontrada";
-        return;
-      }
+    // Atualizar título e cor
+    const titleEl = document.getElementById("line-title");
+    if (titleEl) {
+      titleEl.textContent = lineData.name;
+      titleEl.style.color = lineData.color || "black";
+    }
 
-      // Preencher dados
-      document.getElementById("linha-nome").textContent = linha.nome;
-      document.getElementById("linha-origem").textContent = linha.origem;
-      document.getElementById("linha-destino").textContent = linha.destino;
+    // Inicialmente mostrar IDA
+    let currentDirection = "outbound";
 
-      const ul = document.getElementById("linha-paragens");
-      ul.innerHTML = ""; // limpar
-      linha.paragens.forEach(p => {
+    const stopsEl = document.getElementById("line-stops");
+    const switchBtn = document.getElementById("direction-switch");
+
+    function renderStops() {
+      stopsEl.innerHTML = "";
+      const stops =
+        currentDirection === "outbound"
+          ? lineData.outbound
+          : lineData.inbound;
+
+      stops.forEach(([r, c]) => {
+        const stopName = window.getCsvCell(r, c, "—");
         const li = document.createElement("li");
-        li.textContent = p;
-        ul.appendChild(li);
+        li.textContent = stopName;
+        stopsEl.appendChild(li);
       });
-    })
-    .catch(err => {
-      console.error("Erro ao carregar dados da linha:", err);
-      document.getElementById("linha-nome").textContent = "Erro ao carregar dados";
+
+      switchBtn.textContent =
+        currentDirection === "outbound" ? "Ver Volta" : "Ver Ida";
+    }
+
+    switchBtn.addEventListener("click", () => {
+      currentDirection =
+        currentDirection === "outbound" ? "inbound" : "outbound";
+      renderStops();
     });
-});
+
+    renderStops(); // render inicial
+  });
+})();
