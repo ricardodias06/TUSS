@@ -67,7 +67,7 @@ main {
 
 /* Links da navbar */
 .navbar-links {
-  list-style: none; /* remove bullets */
+  list-style: none;
   display: flex;
   gap: 2rem;
   padding-left: 0;
@@ -108,7 +108,6 @@ main {
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Itens do dropdown */
 .navbar-links li ul li {
   width: 180px;
   padding: 0.5rem 1rem;
@@ -123,14 +122,13 @@ main {
   color: #303030;
 }
 
-/* Mostrar dropdown com fade */
 .navbar-links li:hover ul,
 .navbar-links li:focus-within ul {
   opacity: 1;
   visibility: visible;
 }
 
-/* Botão hamburguer (PC não usado) */
+/* Botão hamburguer */
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -285,7 +283,6 @@ main {
   font-family: "Funnel Display", sans-serif;
 }
 
-/* Grid das linhas */
 .lines-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
@@ -293,7 +290,6 @@ main {
   gap: 20px;
 }
 
-/* Cards das linhas */
 .line-card {
   width: 300px;
   height: 100px;
@@ -342,67 +338,106 @@ main {
 .line-S1 { background: var(--line-S1, #e28000); }
 
 /* ================================================
-   LINHA (individual))
+   LINHA (individual)
 ================================================ */
 
 .linha-container {
-  max-width: 900px;
-  margin: auto;
-  padding: 1rem;
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
 }
 
-#paragens-container ol {
-  list-style: decimal;
-  padding-left: 1.5rem;
+.line-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 15px;
 }
 
-#horarios-container table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+#line-pill {
+  display: inline-block;
+  min-width: 50px;
+  padding: 8px 15px;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
 }
 
-#horarios-container th,
-#horarios-container td {
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-  text-align: left;
+#line-title {
+  font-size: 2rem;
+  font-weight: 700;
 }
 
-#toggle-sentido {
-  margin: 1rem 0;
-  padding: 0.5rem 1rem;
-  background: #ff6600;
+#line-subtitle {
+  font-size: 1rem;
+  color: #555;
+}
+
+#direction-switch {
+  margin-left: auto;
+  background: #B1D566;
+  color: #303030;
   border: none;
-  color: white;
-  cursor: pointer;
+  padding: 8px 15px;
   border-radius: 5px;
-}
-#toggle-sentido:hover {
-  background: #e65c00;
-}
-
-/* ============================================ */
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .stops-background {
-    padding: 50px 15px 30px 15px;
-  }
-
-  .stops-background .stop::before {
-    width: 14px;
-    height: 14px;
-  }
-
-  .stops-background .stops {
-    gap: 15px;
-  }
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* ================================================
-   RESPONSIVIDADE SÓ PC
-================================================ */
-@media (min-width: 1200px) { .lines-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 992px) and (max-width: 1199px) { .lines-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 768px) and (max-width: 991px) { .lines-grid { grid-template-columns: repeat(2, 1fr); } }
+#direction-switch:hover {
+  background: #9ac84d;
+  color: #000;
+}
+
+#stops-wrapper {
+  position: relative;
+  padding-left: 30px;
+}
+
+#stops-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #ccc;
+}
+
+#stops-wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#stops-wrapper li.stop-item {
+  position: relative;
+  padding-left: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#stops-wrapper li.stop-item::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #B1D566;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px #B1D566;
+}
+
+#stops-wrapper li.stop-item:hover {
+  color: #0d89be;
+  font-weight: 500;
+}
