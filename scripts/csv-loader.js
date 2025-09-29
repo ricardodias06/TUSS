@@ -94,8 +94,8 @@
       const raw = (el.getAttribute('data-csv') || '').trim();
       if (!raw) return;
       const parts = raw.split(',').map(s => s.trim());
-      const r = Number(parts[0]) - 1;
-      const c = Number(parts[1]) - 1;
+      const r = Number(parts[0]);
+      const c = Number(parts[1]);
       if (!Number.isFinite(r) || !Number.isFinite(c)) {
         console.warn('data-csv inválido (espera "row,col"):', raw, el);
         el.textContent = '';
