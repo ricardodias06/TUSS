@@ -4,7 +4,7 @@
 window.LINE_MAPPINGS = {
   "5": {
     name: "Linha 5",
-    color: "#0072bc",
+    color: "#cd0000",
     outbound: [
       [358, 0],
       [359, 0],
