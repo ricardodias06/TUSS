@@ -249,7 +249,7 @@ main {
 }
 
 /* ================================================
-   LINHAS PAGE
+   LINHAS
 ================================================ */
 .lines-main {
   padding: 50px 20px;
@@ -340,6 +340,49 @@ main {
 .line-15 { background: var(--line-15, #ffaec9); color: #000; }
 .line-18 { background: var(--line-18, #f1c232); color: #000; }
 .line-S1 { background: var(--line-S1, #e28000); }
+
+/* ================================================
+   LINHA (individual))
+================================================ */
+
+.linha-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+}
+
+#paragens-container ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+#horarios-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#horarios-container th,
+#horarios-container td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+#toggle-sentido {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background: #ff6600;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#toggle-sentido:hover {
+  background: #e65c00;
+}
+
+/* ============================================ */
 
 /* Responsivo */
 @media (max-width: 768px) {
