@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   detailsSection.style.display = "block";
 
   // Carregar JSON
-  fetch("../../data/lines.json")
+  fetch("/data/lines.json")
     .then(res => res.json())
     .then(data => {
       const linha = data[lineId];

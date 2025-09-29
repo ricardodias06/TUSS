@@ -341,6 +341,22 @@ main {
 .line-18 { background: var(--line-18, #f1c232); color: #000; }
 .line-S1 { background: var(--line-S1, #e28000); }
 
+/* Responsivo */
+@media (max-width: 768px) {
+  .stops-background {
+    padding: 50px 15px 30px 15px;
+  }
+
+  .stops-background .stop::before {
+    width: 14px;
+    height: 14px;
+  }
+
+  .stops-background .stops {
+    gap: 15px;
+  }
+}
+
 /* ================================================
    RESPONSIVIDADE SÓ PC
 ================================================ */
