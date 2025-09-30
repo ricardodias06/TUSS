@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (currentLang === "pt") {
       targetFile = ptToEn[file];
-      if (!targetFile) { alert("Não há versão em inglês desta página."); return; }
+      if (!targetFile) { alert("There is no english version of this page."); return; }
       parts[2] = "en";
       parts[3] = targetFile;
     } else if (currentLang === "en") {
       targetFile = enToPt[file];
-      if (!targetFile) { alert("Não há versão em português desta página."); return; }
+      if (!targetFile) { alert("There is no portuguese version of this page."); return; }
       parts[2] = "pt";
       parts[3] = targetFile;
     } else {
