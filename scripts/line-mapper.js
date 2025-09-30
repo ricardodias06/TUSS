@@ -1,6 +1,5 @@
-// /scripts/line-mapper.js
-// Manual mapping: cada linha tem name, color, outbound (IDA) e inbound (VOLTA).
-// Cada paragem: [rowIndex, colIndex] (numérico). Se o CSV usar 1-based vs 0-based o renderer tenta fallbacks.
+// line-mapper.js
+// cada linha tem dois arrays: outbound (IDA) e inbound (VOLTA).
 
 window.LINE_MAPPINGS = {
   "5": {
@@ -14,20 +13,20 @@ window.LINE_MAPPINGS = {
       [362, 0],
       [363, 0],
       [364, 0],
-      [365, 0],
-      [366, 0],
-      [367, 0],
-      [368, 0],
-      [369, 0],
-      [370, 0],
-      [371, 0],
-      [372, 0],
-      [373, 0],
-      [374, 0],
-      [375, 0],
-      [376, 0],
-      [377, 0]
-      // adiciona mais [row,col] conforme necessário
+      [365,0],
+      [366,0],
+      [367,0],
+      [368,0],
+      [369,0],
+      [370,0],
+      [371,0],
+      [372,0],
+      [373,0],
+      [374,0],
+      [375,0],
+      [376,0],
+      [377,0]
+      // adiciona as paragens de IDA
     ],
     inbound: [
       [379, 0],
@@ -48,10 +47,8 @@ window.LINE_MAPPINGS = {
       [394, 0],
       [395, 0],
       [396, 0]
-      // adiciona mais [row,col] conforme necessário
+      // adiciona as paragens de VOLTA
     ]
   }
-
-  // Adiciona aqui outras linhas, por ex:
-  // "200": { name: "Linha 200", color: "#0077cc", outbound: [[...],[...]], inbound: [[...]] }
+  // outras linhas aqui...
 };

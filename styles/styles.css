@@ -67,7 +67,7 @@ main {
 
 /* Links da navbar */
 .navbar-links {
-  list-style: none;
+  list-style: none; /* remove bullets */
   display: flex;
   gap: 2rem;
   padding-left: 0;
@@ -108,6 +108,7 @@ main {
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* Itens do dropdown */
 .navbar-links li ul li {
   width: 180px;
   padding: 0.5rem 1rem;
@@ -122,13 +123,14 @@ main {
   color: #303030;
 }
 
+/* Mostrar dropdown com fade */
 .navbar-links li:hover ul,
 .navbar-links li:focus-within ul {
   opacity: 1;
   visibility: visible;
 }
 
-/* Botão hamburguer */
+/* Botão hamburguer (PC não usado) */
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -227,7 +229,7 @@ main {
 .homepage-section {
   width: 100%;
   height: 100vh;
-  background-image: url('/assets/game-screenshots/bus-4k.png');
+  background-image: url('../assets/game-screenshots/depot-img-1.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -247,7 +249,7 @@ main {
 }
 
 /* ================================================
-   LINHAS
+   LINHAS PAGE
 ================================================ */
 .lines-main {
   padding: 50px 20px;
@@ -283,6 +285,7 @@ main {
   font-family: "Funnel Display", sans-serif;
 }
 
+/* Grid das linhas */
 .lines-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
@@ -290,6 +293,7 @@ main {
   gap: 20px;
 }
 
+/* Cards das linhas */
 .line-card {
   width: 300px;
   height: 100px;
@@ -337,107 +341,25 @@ main {
 .line-18 { background: var(--line-18, #f1c232); color: #000; }
 .line-S1 { background: var(--line-S1, #e28000); }
 
+/* Responsivo */
+@media (max-width: 768px) {
+  .stops-background {
+    padding: 50px 15px 30px 15px;
+  }
+
+  .stops-background .stop::before {
+    width: 14px;
+    height: 14px;
+  }
+
+  .stops-background .stops {
+    gap: 15px;
+  }
+}
+
 /* ================================================
-   LINHA (individual)
+   RESPONSIVIDADE SÓ PC
 ================================================ */
-
-.linha-container {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 20px;
-}
-
-.line-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  gap: 15px;
-}
-
-#line-pill {
-  display: inline-block;
-  min-width: 50px;
-  padding: 8px 15px;
-  border-radius: 25px;
-  color: #fff;
-  font-weight: 600;
-  text-align: center;
-}
-
-#line-title {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-#line-subtitle {
-  font-size: 1rem;
-  color: #555;
-}
-
-#direction-switch {
-  margin-left: auto;
-  background: #B1D566;
-  color: #303030;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-#direction-switch:hover {
-  background: #9ac84d;
-  color: #000;
-}
-
-#stops-wrapper {
-  position: relative;
-  padding-left: 30px;
-}
-
-#stops-wrapper::before {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: #ccc;
-}
-
-#stops-wrapper ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-#stops-wrapper li.stop-item {
-  position: relative;
-  padding-left: 15px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-#stops-wrapper li.stop-item::before {
-  content: "";
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #B1D566;
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px #B1D566;
-}
-
-#stops-wrapper li.stop-item:hover {
-  color: #0d89be;
-  font-weight: 500;
-}
+@media (min-width: 1200px) { .lines-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 992px) and (max-width: 1199px) { .lines-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) and (max-width: 991px) { .lines-grid { grid-template-columns: repeat(2, 1fr); } }
