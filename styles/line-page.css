@@ -1,0 +1,115 @@
+/* ===========================
+   LINE PAGE
+   =========================== */
+
+:root {
+  --tuss-line-color: #c40000;
+  --tuss-bg: #fafafa;
+  --tuss-text: #333;
+}
+
+main {
+  position: relative;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Funnel Display", sans-serif;
+  color: var(--tuss-text);
+}
+
+/* Título da linha */
+#line-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--tuss-line-color);
+}
+
+/* Botão ida/volta */
+#direction-switch {
+  display: block;
+  margin: 0 auto 40px auto;
+  padding: 10px 20px;
+  background: var(--tuss-line-color);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+#direction-switch:hover {
+  background: color-mix(in srgb, var(--tuss-line-color) 85%, black 10%);
+  transform: translateY(-2px);
+}
+
+/* Lista de paragens */
+#line-stops {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Linha vertical */
+#line-stops::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--tuss-line-color);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Cada paragem */
+#line-stops li {
+  position: relative;
+  margin: 40px auto;
+  padding: 20px 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 340px;
+  word-wrap: break-word;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover suave */
+#line-stops li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Bolinhas centradas */
+#line-stops li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--tuss-line-color);
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 4px var(--tuss-line-color);
+  z-index: 2;
+}
+
+/* Conector da bolinha à caixa */
+#line-stops li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0; /* já não precisa de “braço” fixo */
+  height: 0;
+  transform: translate(-50%, -50%);
+}

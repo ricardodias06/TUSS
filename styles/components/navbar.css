@@ -1,0 +1,127 @@
+/* ================================================
+   NAVBAR
+================================================ */
+.navbar {
+  width: 100%;
+  background: #B1D566;
+  padding: 0.8rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo img {
+  height: 45px;
+}
+
+/* Links da navbar */
+.navbar-links {
+  list-style: none; /* remove bullets */
+  display: flex;
+  gap: 2rem;
+  padding-left: 0;
+  margin: 0;
+}
+
+.navbar-links li {
+  position: relative;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #303030;
+}
+
+/* Dropdown */
+.navbar-links li ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: calc(100% + 30px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #B1D566;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+  
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Itens do dropdown */
+.navbar-links li ul li {
+  width: 180px;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-links li ul li a {
+  color: white;
+  font-weight: normal;
+}
+
+.navbar-links li ul li a:hover {
+  color: #303030;
+}
+
+/* Mostrar dropdown com fade */
+.navbar-links li:hover ul,
+.navbar-links li:focus-within ul {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Botão hamburguer (PC não usado) */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.navbar-toggle span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* ================================================
+   BOTÃO DE IDIOMA NA NAVBAR
+================================================ */
+.navbar-links .language-switch {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links .language-switch button {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.navbar-links .language-switch button:hover {
+  background: white;
+  color: #303030;
+}
