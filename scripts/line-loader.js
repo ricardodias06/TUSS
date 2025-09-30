@@ -20,6 +20,8 @@
     if (titleEl) {
       titleEl.textContent = lineData.name;
       titleEl.style.color = lineData.color || "black";
+      // define uma variável CSS com a cor da linha para o CSS usar
+      document.documentElement.style.setProperty('--tuss-line-color', lineData.color || '#B1D566');
     }
 
     // Inicialmente mostrar IDA
