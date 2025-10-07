@@ -38,7 +38,7 @@ main {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: 0.2s, transform 0.2s;
 }
 #direction-switch:hover {
   background: color-mix(in srgb, var(--tuss-line-color) 85%, black 10%);
@@ -72,7 +72,7 @@ main {
   display: flex;
   align-items: center;
   margin: 40px auto;
-  padding: 20px 30px 20px 50px; /* espaço à esquerda para a bolinha */
+  padding: 20px 20px 20px 20px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -81,13 +81,14 @@ main {
   max-width: 340px;
   word-wrap: break-word;
   transition: transform 0.2s, box-shadow 0.2s;
-  left: calc(50% + 20px); /* move a caixa para a direita da linha */
+  left: calc(50% + 30px);
 }
 
 /* Hover suave */
 #line-stops li:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transform: translateX(8px) scale(1.05);
+  box-shadow: inset 0 0 0 1px var(--tuss-line-color);
+
 }
 
 /* Bolinhas coladas à linha central */
@@ -95,7 +96,7 @@ main {
   content: "";
   position: absolute;
   top: 50%;
-  left: -30px; /* posição da bolinha à esquerda da caixa */
+  left: -45px;
   transform: translateY(-50%);
   width: 22px;
   height: 22px;
