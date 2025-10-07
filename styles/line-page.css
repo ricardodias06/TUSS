@@ -53,7 +53,7 @@ main {
   position: relative;
 }
 
-/* Linha vertical */
+/* Linha vertical (sempre no centro) */
 #line-stops::before {
   content: "";
   position: absolute;
@@ -69,8 +69,10 @@ main {
 /* Cada paragem */
 #line-stops li {
   position: relative;
+  display: flex;
+  align-items: center;
   margin: 40px auto;
-  padding: 20px 30px;
+  padding: 20px 30px 20px 50px; /* espaço à esquerda para a bolinha */
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
@@ -79,6 +81,7 @@ main {
   max-width: 340px;
   word-wrap: break-word;
   transition: transform 0.2s, box-shadow 0.2s;
+  left: calc(50% + 20px); /* move a caixa para a direita da linha */
 }
 
 /* Hover suave */
@@ -87,13 +90,13 @@ main {
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
 }
 
-/* Bolinhas centradas */
+/* Bolinhas coladas à linha central */
 #line-stops li::before {
   content: "";
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: -30px; /* posição da bolinha à esquerda da caixa */
+  transform: translateY(-50%);
   width: 22px;
   height: 22px;
   border-radius: 50%;
@@ -101,15 +104,4 @@ main {
   border: 4px solid #fff;
   box-shadow: 0 0 0 4px var(--tuss-line-color);
   z-index: 2;
-}
-
-/* Conector da bolinha à caixa */
-#line-stops li::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0; /* já não precisa de “braço” fixo */
-  height: 0;
-  transform: translate(-50%, -50%);
 }
