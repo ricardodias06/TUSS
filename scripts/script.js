@@ -115,7 +115,7 @@ function initLangSwitch() {
     if (currentLang === "pt") {
       targetFile = ptToEn[fileName];
       if (!targetFile) {
-        alert("Não há versão em inglês desta página.");
+        alert("There is no english version of this page.");
         return;
       }
       // Substitui /pt/ por /en/ (se existir), senão insere após 'pages'
@@ -130,7 +130,7 @@ function initLangSwitch() {
     } else if (currentLang === "en") {
       targetFile = enToPt[fileName];
       if (!targetFile) {
-        alert("Não há versão em português desta página.");
+        alert("There is no portuguese version of this page.");
         return;
       }
       if (langIdx !== -1) {
@@ -142,7 +142,7 @@ function initLangSwitch() {
       }
       parts[parts.length - 1] = targetFile;
     } else {
-      alert("Idioma da página desconhecido, operação cancelada.");
+      alert("Page language unknown, operation canceled.");
       return;
     }
 
