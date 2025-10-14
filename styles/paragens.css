@@ -1,0 +1,18 @@
+/* styles/paragens.css - styles specific for paragem page */
+.paragens-page { padding: 1.25rem; max-width: 980px; margin: 0 auto; }
+.search-area { position: relative; margin-bottom: 1rem; }
+#searchBar { width: 100%; padding: 0.6rem 0.8rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 6px; }
+.results-list { list-style: none; margin: 0.5rem 0 0; padding: 0; border: 1px solid #eee; border-radius: 6px; max-height: 260px; overflow-y: auto; background: #fff; }
+.results-list li { padding: 0.5rem 0.75rem; cursor: pointer; border-bottom: 1px solid #f4f4f4; }
+.results-list li:last-child { border-bottom: 0; }
+.results-list li:hover { background: #fafafa; }
+.paragem-details header { margin-bottom: 0.6rem; }
+.paragem-details .muted { color: #666; font-size: 0.9rem; margin-top: 0.15rem; }
+.linhas-container { margin: 0.5rem 0 1rem; display:flex; flex-wrap:wrap; gap: 0.5rem; }
+.linha-checkbox { display:flex; align-items:center; gap:0.5rem; padding:0.35rem 0.5rem; border-radius:6px; background:#f7f7f7; border:1px solid #eee; cursor:pointer; }
+.horarios-container { margin-top: 1rem; }
+table.timetable { width: 100%; border-collapse: collapse; margin-bottom: 1rem; box-shadow: 0 1px 0 rgba(0,0,0,0.02); }
+table.timetable caption { text-align:left; font-weight:700; padding: 0.45rem 0; }
+table.timetable th, table.timetable td { padding: 0.45rem 0.6rem; text-align:left; border-top: 1px solid #f2f2f2; }
+table.timetable th { font-weight:700; font-size:0.95rem; }
+table.timetable td strong { font-weight:700; margin-right: 0.4rem; }

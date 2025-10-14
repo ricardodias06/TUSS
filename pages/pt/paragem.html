@@ -3,20 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TUSS &bull; Linha</title>
+  <title>TUSS &bull; Paragem</title>
   <link rel="icon" href="/assets/tuss-logos/tuss-stripes.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="/styles/styles.css">
   <link rel="stylesheet" href="/styles/components/navbar.css">
   <link rel="stylesheet" href="/styles/components/footer.css">
   <link rel="stylesheet" href="/styles/line-page.css">
+  <link rel="stylesheet" href="/styles/paragens.css">
 </head>
 <body>
   <div id="navbar-container"></div>
 
-  <main>
-    
+  <main class="paragem-main">
+    <section id="paragem-info" class="paragem-info">
+      <h1 id="stop-name">Paragem</h1>
+      <p class="muted">Row no CSV: <span id="stop-row"></span></p>
+    </section>
+
+    <section id="line-buttons" class="line-buttons">
+      <!-- Os botões das linhas que passam nesta paragem serão gerados aqui -->
+    </section>
+
+    <section id="timetable" class="timetable-container">
+      <!-- A tabela de horários será renderizada aqui -->
+    </section>
   </main>
 
   <div id="footer-container"></div>
@@ -25,7 +37,7 @@
   <script>window.CSV_URL = '/data/data.csv';</script>
   <script src="/scripts/csv-loader.js" defer></script>
   <script src="/scripts/line-mapper.js" defer></script>
-  <script src="/scripts/line-loader.js" defer></script>
+  <script src="/scripts/paragens.js" defer></script>
   <script src="/scripts/script.js" defer></script>
 </body>
 </html>
