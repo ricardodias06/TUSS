@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUSS &bull; Escalas</title>
+    
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="../../styles/components/navbar.css">
+    <link rel="stylesheet" href="../../styles/components/footer.css">
+    <link rel="stylesheet" href="../../styles/escalas.css"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <main class="container escalas-main">
+        <header class="admin-header">
+            <div class="header-text">
+                <a href="hub.html" class="back-link">← Voltar ao Hub</a>
+                <h1>Gestão de Escalas</h1>
+                <p id="subtitle">Serviços e turnos operacionais</p>
+            </div>
+            
+            <div class="admin-controls admin-only" style="display:none;">
+                <button id="btnImportDaily" class="btn-import-sheets" onclick="importDailyShifts()">
+                    📥 Sincronizar Dispatch
+                </button>
+            </div>
+        </header>
+
+        <div id="shiftsContainer" class="shifts-grid">
+            </div>
+
+        <div id="loadingMessage" class="status-message">
+            <div class="spinner"></div> <span id="loadingText">A carregar escalas...</span>
+        </div>
+        
+        <div id="emptyMessage" class="status-message" style="display:none;">
+            <p>Não existem turnos disponíveis. Utilize o botão acima para importar.</p>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../../scripts/auth.js"></script>
+    <script src="../../scripts/script.js"></script>
+    <script src="../../scripts/escalas.js"></script> 
+</body>
+</html>

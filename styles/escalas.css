@@ -1,0 +1,141 @@
+.escalas-main {
+    padding-top: 40px;
+    padding-bottom: 80px;
+    min-height: 80vh;
+    font-family: 'Funnel Display', sans-serif;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #B1D566;
+    padding-bottom: 20px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+.back-link:hover { color: #B1D566; }
+
+.btn-import-sheets {
+    background-color: #B1D566;
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: 'Funnel Display', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(177, 213, 102, 0.2);
+}
+
+.btn-import-sheets:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(177, 213, 102, 0.3);
+}
+
+.shifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.shift-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.shift-card:hover { transform: translateY(-5px); }
+
+.shift-banner {
+    background: #B1D566;
+    color: #000;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.shift-body { padding: 20px; }
+
+.shift-times {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.time-box { text-align: center; flex: 1; }
+.time-box label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.time-box span { font-size: 1.5rem; font-weight: 700; color: #111; }
+
+.time-separator { align-self: center; font-size: 1.2rem; color: #ddd; }
+
+.shift-info-row {
+    display: flex;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    gap: 10px;
+}
+
+.info-item { flex: 1; text-align: center; }
+.info-item label {
+    display: block;
+    font-size: 0.65rem;
+    color: #777;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+.info-item span { font-weight: 700; color: #333; font-size: 0.85rem; }
+
+.shift-footer {
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #00994d;
+}
+
+.shift-card.unassigned { border: 2px dashed #ccc; filter: grayscale(0.5); }
+.shift-card.unassigned .shift-banner { background: #555; color: #fff; }
+.shift-card.unassigned .shift-footer { color: #999; }
+
+.btn-delete-shift {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.1);
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.spinner { width: 30px; height: 30px; border: 3px solid #f3f3f3; border-top: 3px solid #B1D566; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 10px; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

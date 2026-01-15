@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUSS &bull; Área Privada</title>
+    
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="../../styles/components/navbar.css">
+    <link rel="stylesheet" href="../../styles/components/footer.css">
+    <link rel="stylesheet" href="../../styles/hub.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <main class="container hub-main">
+        <header class="hub-header">
+            <div class="welcome-text">
+                <h1>Olá, <span id="userNameDisplay">...</span>!</h1>
+                <p id="userRoleDisplay" class="role-badge">...</p>
+            </div>
+            <button class="btn-logout" onclick="logout()">
+                Terminar Sessão
+            </button>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <a href="backoffice.html" class="dash-card admin-only" style="display:none;">
+                <div class="card-icon">
+                    <img src="../../assets/svg-icons/people-group.svg" alt="Gestão de Equipa">
+                </div>
+                <h3>Gestão de Equipa</h3>
+                <p>Adicionar, editar e remover membros do staff.</p>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <a href="escalas.html" class="dash-card">
+                <div class="card-icon">
+                    <img src="../../assets/svg-icons/calendar-clock.svg" alt="Escalas">
+                </div>
+                <h3>Escalas & Turnos</h3>
+                <p>Ver os meus horários e serviços atribuídos.</p>
+            </a>
+
+            <div class="dash-card">
+                <div class="card-icon">
+                    <img src="../../assets/svg-icons/chart-histogram.svg" alt="Estatísticas">
+                </div>
+                <h3>A Minha Performance</h3>
+                <p>Quilómetros, horas conduzidas e ranking.</p>
+                <span class="card-tag">Em Breve</span>
+            </div>
+
+            <div class="dash-card" onclick="alert('Funcionalidade de editar perfil próprio virá em breve!')">
+                <div class="card-icon">
+                    <img src="../../assets/svg-icons/settings.svg" alt="Definições">
+                </div>
+                <h3>Definições de Conta</h3>
+                <p>Alterar password e dados pessoais.</p>
+                <span class="card-arrow">→</span>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../../scripts/auth.js"></script>
+    <script src="../../scripts/script.js"></script>
+    <script src="../../scripts/hub.js"></script>
+</body>
+</html>

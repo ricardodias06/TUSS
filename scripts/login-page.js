@@ -1,26 +1,22 @@
 const API_BASE_LOGIN = 'http://localhost:3000';
 
-// 1. Função para alternar Abas
+// --- GESTÃO DE ABAS (LOGIN vs REGISTO) ---
 function switchTab(tab) {
-    // Remove classe ativa de todos
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
 
-    // Adiciona ao selecionado
     if(tab === 'login') {
         document.querySelectorAll('.tab-btn')[0].classList.add('active');
         document.getElementById('loginForm').classList.add('active');
-        // Limpa mensagens
         document.getElementById('loginFeedback').textContent = '';
     } else {
         document.querySelectorAll('.tab-btn')[1].classList.add('active');
         document.getElementById('registerForm').classList.add('active');
-        // Limpa mensagens
         document.getElementById('regFeedback').textContent = '';
     }
 }
 
-// 2. Lógica de LOGIN
+// --- LÓGICA DE LOGIN ---
 document.getElementById('loginForm').onsubmit = async (e) => {
     e.preventDefault();
     
@@ -29,7 +25,6 @@ document.getElementById('loginForm').onsubmit = async (e) => {
     const feedback = document.getElementById('loginFeedback');
     const btn = e.target.querySelector('button');
 
-    // Estado de Loading
     feedback.className = "feedback-msg text-blue";
     feedback.textContent = "A verificar credenciais...";
     btn.disabled = true;
@@ -45,24 +40,19 @@ document.getElementById('loginForm').onsubmit = async (e) => {
         if (!response.ok) throw new Error();
         const data = await response.json();
 
-        // Sucesso: Guardar Sessão
+        // Guardar Sessão
         localStorage.setItem('tuss_token', data.token);
         localStorage.setItem('tuss_user', JSON.stringify(data.user));
 
-        feedback.textContent = "Sucesso! A redirecionar...";
+        feedback.textContent = "Sucesso! A entrar...";
         feedback.className = "feedback-msg text-green";
 
-        // Redirecionamento baseado no cargo
+        // REDIRECIONAMENTO ATUALIZADO -> Vai para o Hub Central
         setTimeout(() => {
-            if (data.user.role === 'passenger') {
-                window.location.href = 'index.html'; // Passageiro vai para Home
-            } else {
-                window.location.href = 'backoffice.html'; // Staff vai para Painel
-            }
+            window.location.href = 'hub.html'; 
         }, 1000);
 
     } catch (error) {
-        // Erro
         feedback.textContent = "Email ou password incorretos.";
         feedback.className = "feedback-msg text-red";
         btn.disabled = false;
@@ -70,7 +60,7 @@ document.getElementById('loginForm').onsubmit = async (e) => {
     }
 };
 
-// 3. Lógica de REGISTO (Sempre Passageiro)
+// --- LÓGICA DE REGISTO ---
 document.getElementById('registerForm').onsubmit = async (e) => {
     e.preventDefault();
     
@@ -92,7 +82,7 @@ document.getElementById('registerForm').onsubmit = async (e) => {
                 robloxUsername: username,
                 email: email,
                 password: password,
-                role: 'passenger', // Segurança: Registo público é sempre passageiro
+                role: 'passenger', // Por segurança, registo público é sempre passageiro
                 status: 'active'
             })
         });
@@ -102,8 +92,9 @@ document.getElementById('registerForm').onsubmit = async (e) => {
         feedback.textContent = "Conta criada com sucesso! Faça login.";
         feedback.className = "feedback-msg text-green";
         
-        // Limpa formulário e muda para a aba de login
         e.target.reset();
+        
+        // Mudar automaticamente para a aba de login
         setTimeout(() => {
             switchTab('login');
             document.getElementById('loginFeedback').textContent = "Conta criada! Pode entrar.";
