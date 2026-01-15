@@ -3,176 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TUSS &bull; Gestão de Dados</title>
+    <title>TUSS &bull; Backoffice</title>
     
     <link rel="stylesheet" href="../../styles/styles.css">
-    
     <link rel="stylesheet" href="../../styles/components/navbar.css">
     <link rel="stylesheet" href="../../styles/components/footer.css">
     
     <link rel="stylesheet" href="../../styles/backoffice.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <div id="navbar-container"></div>
 
-    <main class="container admin-main">
-        <header class="admin-header">
+    <main class="tuss-container">
+        
+        <header class="page-header">
             <div class="header-text">
-                <h1>Gestão de Dados</h1>
-                <p>Painel de controlo de Staff e Utilizadores</p>
+                <h1>Painel de Controlo</h1>
+                <p>Gestão integral da TUSS.</p>
             </div>
-            <button class="btn-primary-action" onclick="openCreateModal()">
-                + Novo Membro
-            </button>
+            <div class="header-stats">
+                <div class="stat-badge">
+                    <i class="fa-solid fa-bus"></i>
+                    <span id="stat-buses-header">--</span> Veículos
+                </div>
+            </div>
         </header>
 
-        <div class="table-card">
-            <table class="admin-table">
-                <thead>
-                    <tr>
-                        <th>Roblox Username</th>
-                        <th>Email</th>
-                        <th>Cargo</th>
-                        <th>Estado</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="staffTableBody">
-                    </tbody>
-            </table>
+        <div class="backoffice-grid">
             
-            <div id="loadingMessage">
-                <div class="spinner"></div>
-                <span>A carregar dados...</span>
-            </div>
+            <aside class="backoffice-sidebar">
+                <div class="admin-profile-card">
+                    <img src="../../assets/svg-icons/user.svg" id="admin-avatar" alt="Admin">
+                    <div class="admin-info">
+                        <strong id="admin-name">--</strong>
+                        <span>Administrador</span>
+                    </div>
+                </div>
+
+                <nav class="admin-nav">
+                    <button class="nav-btn active" onclick="switchSection('fleet')">
+                        <i class="fa-solid fa-bus"></i> Frota
+                    </button>
+                    <button class="nav-btn" onclick="switchSection('staff')">
+                        <i class="fa-solid fa-users"></i> Staff
+                    </button>
+                    <button class="nav-btn" onclick="switchSection('settings')">
+                        <i class="fa-solid fa-sliders"></i> Definições
+                    </button>
+
+                    <a href="hub.html" class="nav-btn return-link">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar ao Hub
+                    </a>
+                </nav>
+            </aside>
+
+            <section class="backoffice-content">
+                
+                <div id="section-fleet" class="content-panel active">
+                    <div class="panel-header">
+                        <h2>Frota Ativa</h2>
+                        <button class="btn-tuss" onclick="openModal('busModal')">
+                            <i class="fa-solid fa-plus"></i> Novo Autocarro
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="tuss-table" id="fleet-table">
+                            <thead>
+                                <tr>
+                                    <th>Nº Frota</th>
+                                    <th>Matrícula</th>
+                                    <th>Modelo</th>
+                                    <th>Estado</th>
+                                    <th>Combustível</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="6" class="text-center text-muted">A carregar...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="section-staff" class="content-panel">
+                    <div class="panel-header">
+                        <h2>Equipa TUSS</h2>
+                    </div>
+                    <div class="empty-state">
+                        <p>Gestão de motoristas disponível brevemente.</p>
+                    </div>
+                </div>
+
+                <div id="section-settings" class="content-panel">
+                    <div class="panel-header">
+                        <h2>Definições de Sistema</h2>
+                        <p class="panel-subtitle">Configure as listas auxiliares.</p>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-card">
+                            <div class="setting-header">
+                                <h3>Combustíveis</h3>
+                                <button class="btn-icon-small" onclick="openSimpleModal('fuel')"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <ul class="setting-list" id="list-fuel"></ul>
+                        </div>
+
+                        <div class="setting-card">
+                            <div class="setting-header">
+                                <h3>Transmissões</h3>
+                                <button class="btn-icon-small" onclick="openSimpleModal('trans')"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <ul class="setting-list" id="list-trans"></ul>
+                        </div>
+
+                        <div class="setting-card">
+                            <div class="setting-header">
+                                <h3>Estados (Frota)</h3>
+                                <button class="btn-icon-small" onclick="openSimpleModal('status')"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <ul class="setting-list" id="list-status"></ul>
+                        </div>
+
+                        <div class="setting-card">
+                            <div class="setting-header">
+                                <h3>Cargos (Ranks)</h3>
+                                <button class="btn-icon-small" onclick="openSimpleModal('rank')"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <ul class="setting-list" id="list-rank"></ul>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
         </div>
     </main>
 
     <div id="footer-container"></div>
 
-    <div id="createModal" class="tuss-modal-overlay">
-        <div class="tuss-modal-box">
-            <span class="tuss-close-btn" onclick="closeCreateModal()">&times;</span>
-            <h2 class="tuss-modal-title">Novo Membro</h2>
-            
-            <form id="createStaffForm">
-                <div class="tuss-form-group">
-                    <label class="tuss-label">Roblox Username</label>
-                    <input type="text" id="newUsername" class="tuss-input" placeholder="Ex: Motorista123" required>
-                </div>
-                
-                <div class="tuss-form-group">
-                    <label class="tuss-label">Email (@tuss.pt)</label>
-                    <input type="email" id="newEmail" class="tuss-input" placeholder="Ex: nome@tuss.pt" required>
-                </div>
-
-                <div class="tuss-form-group">
-                    <label class="tuss-label">Password</label>
-                    <input type="password" id="newPassword" class="tuss-input" value="tuss2026" required>
-                </div>
-
-                <div class="tuss-form-group">
-                    <label class="tuss-label">Cargo</label>
-                    <select id="newRole" class="tuss-input">
-                        <option value="staff">Motorista (Staff)</option>
-                        <option value="highrank">Administração</option>
-                        <option value="passenger">Passageiro</option>
-                    </select>
-                </div>
-
-                <p id="createFeedback" class="tuss-feedback"></p>
-                <button type="submit" class="tuss-btn-submit">Criar Conta</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="editModal" class="tuss-modal-overlay">
-        <div class="tuss-modal-box">
-            <span class="tuss-close-btn" onclick="closeEditModal()">&times;</span>
-            
-            <div id="editStep1">
-                <h2 class="tuss-modal-title">Editar Dados</h2>
-                <p class="modal-subtitle">Selecione os campos que deseja alterar:</p>
-                
-                <div class="edit-options-grid">
-                    <label class="edit-option">
-                        <input type="checkbox" id="chkUsername">
-                        <span class="option-box">Username</span>
-                    </label>
-                    <label class="edit-option">
-                        <input type="checkbox" id="chkEmail">
-                        <span class="option-box">Email</span>
-                    </label>
-                    <label class="edit-option">
-                        <input type="checkbox" id="chkPassword">
-                        <span class="option-box">Password</span>
-                    </label>
-                    <label class="edit-option">
-                        <input type="checkbox" id="chkRole">
-                        <span class="option-box">Cargo</span>
-                    </label>
-                </div>
-
-                <button class="tuss-btn-submit btn-blue" onclick="goToEditForm()">Continuar</button>
+    <div id="busModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Adicionar Veículo</h3>
+                <button class="close-btn" onclick="closeModal('busModal')">&times;</button>
             </div>
-
-            <form id="editStaffForm" style="display:none;">
-                <h2 class="tuss-modal-title">Atualizar Informação</h2>
-                <input type="hidden" id="editUserId">
-
-                <div class="tuss-form-group" id="groupUsername" style="display:none;">
-                    <label class="tuss-label">Novo Username</label>
-                    <input type="text" id="editUsername" class="tuss-input">
+            <form id="busForm">
+                <div class="form-grid">
+                    <div class="input-wrapper"><label>Nº Frota</label><input type="text" name="busNumber" required></div>
+                    <div class="input-wrapper"><label>Matrícula</label><input type="text" name="licensePlate" required></div>
+                    <div class="input-wrapper full"><label>Modelo</label><input type="text" name="name" required></div>
+                    <div class="input-wrapper"><label>Combustível</label><select name="fuelTypeId" id="fuelSelect" required></select></div>
+                    <div class="input-wrapper"><label>Transmissão</label><select name="transmissionId" id="transSelect" required></select></div>
+                    <div class="input-wrapper"><label>Estado</label><select name="statusId" id="statusSelect" required></select></div>
                 </div>
-                
-                <div class="tuss-form-group" id="groupEmail" style="display:none;">
-                    <label class="tuss-label">Novo Email</label>
-                    <input type="email" id="editEmail" class="tuss-input">
-                </div>
-
-                <div class="tuss-form-group" id="groupPassword" style="display:none;">
-                    <label class="tuss-label">Nova Password</label>
-                    <input type="password" id="editPassword" class="tuss-input" placeholder="Nova senha segura">
-                </div>
-
-                <div class="tuss-form-group" id="groupRole" style="display:none;">
-                    <label class="tuss-label">Novo Cargo</label>
-                    <select id="editRole" class="tuss-input">
-                        <option value="staff">Motorista (Staff)</option>
-                        <option value="highrank">Administração</option>
-                        <option value="passenger">Passageiro</option>
-                        <option value="owner">Owner</option>
-                    </select>
-                </div>
-
-                <p id="editFeedback" class="tuss-feedback"></p>
-                
                 <div class="modal-actions">
-                    <button type="button" class="btn-cancel" onclick="resetEditModal()">Voltar</button>
-                    <button type="submit" class="tuss-btn-submit btn-blue">Guardar</button>
+                    <button type="button" class="btn-text" onclick="closeModal('busModal')">Cancelar</button>
+                    <button type="submit" class="btn-tuss">Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="deleteModal" class="tuss-modal-overlay">
-        <div class="tuss-modal-box text-center">
-            <div class="modal-icon">⚠️</div>
-            <h2 class="tuss-modal-title text-red">Tem a certeza?</h2>
-            <p class="modal-text">Esta ação irá remover o utilizador permanentemente. Não pode ser revertida.</p>
-            
-            <div class="modal-actions center">
-                <button class="btn-cancel" onclick="closeDeleteModal()">Cancelar</button>
-                <button id="confirmDeleteBtn" class="btn-danger">Sim, Eliminar</button>
+    <div id="simpleModal" class="modal-overlay">
+        <div class="modal-card modal-small">
+            <div class="modal-header">
+                <h3 id="simpleModalTitle">Adicionar Item</h3>
+                <button class="close-btn" onclick="closeModal('simpleModal')">&times;</button>
             </div>
+            <form id="simpleForm">
+                <input type="hidden" id="simpleItemType">
+                <div class="input-wrapper">
+                    <label>Nome</label>
+                    <input type="text" id="simpleItemName" required placeholder="Ex: Elétrico">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-text" onclick="closeModal('simpleModal')">Cancelar</button>
+                    <button type="submit" class="btn-tuss">Criar</button>
+                </div>
+            </form>
         </div>
     </div>
 
     <script src="../../scripts/auth.js"></script>
+    <script src="../../scripts/script.js"></script>
     <script src="../../scripts/backoffice.js"></script>
-    <script src="../../scripts/script.js"></script> 
+    <script src="../../scripts/lang-switch.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TUSS &bull; Área Privada</title>
+    <title>TUSS &bull; Hub Pessoal</title>
     
     <link rel="stylesheet" href="../../styles/styles.css">
     <link rel="stylesheet" href="../../styles/components/navbar.css">
@@ -11,58 +11,74 @@
     <link rel="stylesheet" href="../../styles/hub.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <div id="navbar-container"></div>
 
-    <main class="container hub-main">
-        <header class="hub-header">
-            <div class="welcome-text">
-                <h1>Olá, <span id="userNameDisplay">...</span>!</h1>
-                <p id="userRoleDisplay" class="role-badge">...</p>
-            </div>
-            <button class="btn-logout" onclick="logout()">
-                Terminar Sessão
-            </button>
+    <main class="hub-container">
+        <header class="hub-greeting">
+            <h1>A carregar...</h1>
+            <p>Bem-vindo à área privada dos Transportes Urbanos de São Sebastião.</p>
         </header>
 
-        <div class="dashboard-grid">
+        <div class="hub-grid">
+            <div class="hub-card profile-card">
+                <div class="profile-header">
+                    <img src="../../assets/svg-icons/user.svg" id="user-avatar" alt="Avatar" class="profile-avatar">
+                    
+                    <div class="profile-info">
+                        <h2 id="user-name">--</h2>
+                        <span class="badge" id="user-role">--</span>
+                        <p class="user-id" id="user-id">ID: --</p>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn-outline-danger" id="logout-btn">
+                        <i class="fa-solid fa-right-from-bracket"></i> Terminar Sessão
+                    </button>
+                </div>
+            </div>
+
+            <a href="backoffice.html" class="hub-card action-card" id="admin-panel-card" style="display: none;">
+                <div class="icon-box warning">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Backoffice</h3>
+                    <p>Gestão de frota, escalas e recursos humanos.</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
+
+            <a href="escalas.html" class="hub-card action-card">
+                <div class="icon-box primary">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div class="card-content">
+                    <h3>Minhas Escalas</h3>
+                    <p>Consulta os teus horários e serviços atribuídos.</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </a>
             
-            <a href="backoffice.html" class="dash-card admin-only" style="display:none;">
-                <div class="card-icon">
-                    <img src="../../assets/svg-icons/people-group.svg" alt="Gestão de Equipa">
+             <a href="linhas.html" class="hub-card action-card">
+                <div class="icon-box success">
+                    <i class="fa-solid fa-route"></i>
                 </div>
-                <h3>Gestão de Equipa</h3>
-                <p>Adicionar, editar e remover membros do staff.</p>
-                <span class="card-arrow">→</span>
+                <div class="card-content">
+                    <h3>Linhas e Horários</h3>
+                    <p>Informação geral sobre a operação.</p>
+                </div>
+                <div class="card-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
             </a>
-
-            <a href="escalas.html" class="dash-card">
-                <div class="card-icon">
-                    <img src="../../assets/svg-icons/calendar-clock.svg" alt="Escalas">
-                </div>
-                <h3>Escalas & Turnos</h3>
-                <p>Ver os meus horários e serviços atribuídos.</p>
-            </a>
-
-            <div class="dash-card">
-                <div class="card-icon">
-                    <img src="../../assets/svg-icons/chart-histogram.svg" alt="Estatísticas">
-                </div>
-                <h3>A Minha Performance</h3>
-                <p>Quilómetros, horas conduzidas e ranking.</p>
-                <span class="card-tag">Em Breve</span>
-            </div>
-
-            <div class="dash-card" onclick="alert('Funcionalidade de editar perfil próprio virá em breve!')">
-                <div class="card-icon">
-                    <img src="../../assets/svg-icons/settings.svg" alt="Definições">
-                </div>
-                <h3>Definições de Conta</h3>
-                <p>Alterar password e dados pessoais.</p>
-                <span class="card-arrow">→</span>
-            </div>
 
         </div>
     </main>
@@ -72,5 +88,6 @@
     <script src="../../scripts/auth.js"></script>
     <script src="../../scripts/script.js"></script>
     <script src="../../scripts/hub.js"></script>
+    <script src="../../scripts/lang-switch.js"></script>
 </body>
 </html>

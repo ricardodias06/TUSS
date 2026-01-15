@@ -1,158 +1,247 @@
-/* Layout Principal */
-.hub-main {
-    padding-top: 50px;
-    padding-bottom: 100px;
+/* --- VARIÁVEIS LOCAIS (TUSS GREEN EDITION) --- */
+:root {
+    --hub-primary: #B1D566;       /* Verde TUSS Oficial */
+    --hub-darker: #8ba84a;        /* Uma versão mais escura para bordas/hover */
+    --hub-accent: #f4f9e8;        /* Fundo muito claro (quase branco) */
+    --text-main: #1e293b;         /* Cinza Escuro */
+    --text-muted: #64748b;        /* Cinza Médio */
+    --card-bg: #ffffff;
+    
+    /* Sombras para efeito "Levitar" */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+}
+
+/* --- LAYOUT GERAL --- */
+body {
+    background-color: #f8fafc;
+}
+
+.hub-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
     min-height: 80vh;
-    font-family: var(--font-main, sans-serif);
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Header */
-.hub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+@keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-.hub-header h1 {
-    font-family: var(--font-display, sans-serif);
-    font-size: 2rem;
-    color: var(--color-dark, #111);
-    margin: 0 0 5px 0;
+/* --- CABEÇALHO --- */
+.hub-greeting {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1.5rem;
 }
 
-.role-badge {
+.hub-greeting h1 {
+    font-family: 'Funnel Display', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.hub-greeting .highlight {
+    color: var(--hub-darker); /* Texto um pouco mais escuro para leitura */
+    background: linear-gradient(120deg, rgba(177, 213, 102, 0.3) 0%, rgba(177, 213, 102, 0) 100%);
+    padding: 0 0.5rem;
+    border-radius: 8px;
     display: inline-block;
-    background: #f1f2f6;
-    color: #666;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
 }
 
-.btn-logout {
-    background: transparent;
-    border: 1px solid #e74c3c;
-    color: #e74c3c;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s;
+.hub-greeting p {
+    color: var(--text-muted);
+    font-size: 1.125rem;
 }
 
-.btn-logout:hover {
-    background: #e74c3c;
-    color: white;
-}
-
-/* Grid de Cartões */
-.dashboard-grid {
+/* --- GRID SYSTEM --- */
+.hub-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
 }
 
-.dash-card {
-    background: white;
-    border: 1px solid #eee;
+/* --- CARTÕES (BASE) --- */
+.hub-card {
+    background: var(--card-bg);
     border-radius: 16px;
-    padding: 30px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s ease;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    color: inherit;
     position: relative;
-    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+}
+
+.hub-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--hub-primary);
+}
+
+/* --- CARTÃO DE PERFIL (DESTAQUE) --- */
+.profile-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #ffffff 0%, #f7fce8 100%); /* Gradiente subtil verde */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-left: 5px solid var(--hub-primary);
+}
+
+@media (min-width: 768px) {
+    .profile-card {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Mantém redondo, mesmo sendo SVG */
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: var(--hub-accent); /* Fundo verde claro atrás do SVG */
+    padding: 2px; /* Espaço pequeno para o SVG não colar na borda */
+}
+
+.profile-info h2 {
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 1.75rem;
+    color: var(--text-main);
+    margin: 0;
+    font-weight: 600;
+}
+
+.profile-info .badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    background-color: var(--hub-primary);
+    color: #1a1a1a; /* PRETO para contraste no verde claro */
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.profile-info .user-id {
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
     display: block;
 }
 
-.dash-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border-color: var(--color-primary, #00994d);
-}
-
-/* --- ÍCONES SVG --- */
-.card-icon {
-    width: 48px;  /* Tamanho fixo para o container do ícone */
-    height: 48px;
-    margin-bottom: 20px;
+/* Botão de Logout */
+.btn-outline-danger {
+    padding: 0.6rem 1.25rem;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    background: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
     display: flex;
     align-items: center;
+    gap: 0.5rem;
 }
 
-.card-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* Transição suave para a cor */
-    transition: filter 0.3s ease;
-    /* Começa cinzento escuro/preto (padrão do SVG) */
-    opacity: 0.8;
+.btn-outline-danger:hover {
+    background: #ef4444;
+    color: white;
 }
 
-/* Efeito Hover: Pinta o SVG de Verde TUSS */
-/* Nota: filter hue-rotate é um truque para mudar cor de SVG img sem inline SVG. 
-   Para precisão total, inline SVG é melhor, mas isto funciona bem para preto -> cor. */
-.dash-card:hover .card-icon img {
-    /* Este filtro tenta aproximar ao verde #00994d. 
-       Se o SVG original for preto (#000), usamos filter para colorir. */
-    filter: invert(43%) sepia(96%) saturate(414%) hue-rotate(96deg) brightness(92%) contrast(101%);
-    opacity: 1;
+/* --- CARTÕES DE AÇÃO --- */
+.action-card {
+    align-items: center;
+    gap: 1.25rem;
+    cursor: pointer;
 }
 
-.dash-card h3 {
-    margin: 0 0 10px 0;
-    color: var(--color-dark, #111);
-    font-size: 1.2rem;
-    font-weight: 700;
+.icon-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
 }
 
-.dash-card p {
-    color: #666;
-    font-size: 0.95rem;
+/* Cores dos Ícones - Ajustadas para combinar com o verde */
+.icon-box.primary {
+    background-color: var(--hub-accent); /* Verde Claro */
+    color: var(--hub-darker);            /* Verde Escuro */
+}
+
+.icon-box.warning {
+    background-color: #fff7ed;
+    color: #ea580c;
+}
+
+.icon-box.success {
+    background-color: #f0fdf4;
+    color: #16a34a;
+}
+
+.action-card:hover .icon-box {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.card-content h3 {
     margin: 0;
-    line-height: 1.5;
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.card-content p {
+    margin: 0.35rem 0 0;
+    font-size: 0.925rem;
+    color: var(--text-muted);
+    line-height: 1.4;
 }
 
 .card-arrow {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    font-size: 1.2rem;
-    color: var(--color-primary, #00994d);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.2s;
+    margin-left: auto;
+    color: #cbd5e1;
+    font-size: 1rem;
+    transition: all 0.3s;
 }
 
-.dash-card:hover .card-arrow {
-    opacity: 1;
-    transform: translateX(0);
+.action-card:hover .card-arrow {
+    color: var(--hub-primary);
+    transform: translateX(4px);
 }
 
-/* Tag "Em Breve" */
-.card-tag {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #f1f2f6;
-    color: #999;
-    font-size: 0.75rem;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-}
-
-/* Responsividade */
+/* Mobile Tweaks */
 @media (max-width: 600px) {
-    .hub-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    .btn-logout { width: 100%; }
+    .hub-container { padding: 2rem 1rem; }
+    .hub-greeting h1 { font-size: 2rem; }
+    .profile-card { padding: 1.5rem; }
+    .profile-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
