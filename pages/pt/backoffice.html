@@ -22,9 +22,9 @@
         <header class="admin-header">
             <div class="header-text">
                 <h1>Gestão de Dados</h1>
-                <p>Painel de controlo de Staff</p>
+                <p>Painel de controlo de Staff e Utilizadores</p>
             </div>
-            <button class="btn-add-user" onclick="openCreateModal()">
+            <button class="btn-primary-action" onclick="openCreateModal()">
                 + Novo Membro
             </button>
         </header>
@@ -43,8 +43,10 @@
                 <tbody id="staffTableBody">
                     </tbody>
             </table>
+            
             <div id="loadingMessage">
-                <div class="spinner"></div> A carregar dados...
+                <div class="spinner"></div>
+                <span>A carregar dados...</span>
             </div>
         </div>
     </main>
@@ -59,12 +61,12 @@
             <form id="createStaffForm">
                 <div class="tuss-form-group">
                     <label class="tuss-label">Roblox Username</label>
-                    <input type="text" id="newUsername" class="tuss-input" placeholder="Ex: freitasfaisca9" required>
+                    <input type="text" id="newUsername" class="tuss-input" placeholder="Ex: Motorista123" required>
                 </div>
                 
                 <div class="tuss-form-group">
                     <label class="tuss-label">Email (@tuss.pt)</label>
-                    <input type="email" id="newEmail" class="tuss-input" placeholder="Ex: motorista@tuss.pt" required>
+                    <input type="email" id="newEmail" class="tuss-input" placeholder="Ex: nome@tuss.pt" required>
                 </div>
 
                 <div class="tuss-form-group">
@@ -87,15 +89,82 @@
         </div>
     </div>
 
-    <div id="deleteModal" class="tuss-modal-overlay">
-        <div class="tuss-modal-box" style="text-align: center; max-width: 400px;">
-            <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
-            <h2 class="tuss-modal-title" style="color: #e74c3c;">Tem a certeza?</h2>
-            <p style="color: #666; margin-bottom: 25px; font-size: 0.95rem;">
-                Esta ação vai remover o utilizador permanentemente. Não pode ser revertida.
-            </p>
+    <div id="editModal" class="tuss-modal-overlay">
+        <div class="tuss-modal-box">
+            <span class="tuss-close-btn" onclick="closeEditModal()">&times;</span>
             
-            <div style="display: flex; gap: 10px; justify-content: center;">
+            <div id="editStep1">
+                <h2 class="tuss-modal-title">Editar Dados</h2>
+                <p class="modal-subtitle">Selecione os campos que deseja alterar:</p>
+                
+                <div class="edit-options-grid">
+                    <label class="edit-option">
+                        <input type="checkbox" id="chkUsername">
+                        <span class="option-box">Username</span>
+                    </label>
+                    <label class="edit-option">
+                        <input type="checkbox" id="chkEmail">
+                        <span class="option-box">Email</span>
+                    </label>
+                    <label class="edit-option">
+                        <input type="checkbox" id="chkPassword">
+                        <span class="option-box">Password</span>
+                    </label>
+                    <label class="edit-option">
+                        <input type="checkbox" id="chkRole">
+                        <span class="option-box">Cargo</span>
+                    </label>
+                </div>
+
+                <button class="tuss-btn-submit btn-blue" onclick="goToEditForm()">Continuar</button>
+            </div>
+
+            <form id="editStaffForm" style="display:none;">
+                <h2 class="tuss-modal-title">Atualizar Informação</h2>
+                <input type="hidden" id="editUserId">
+
+                <div class="tuss-form-group" id="groupUsername" style="display:none;">
+                    <label class="tuss-label">Novo Username</label>
+                    <input type="text" id="editUsername" class="tuss-input">
+                </div>
+                
+                <div class="tuss-form-group" id="groupEmail" style="display:none;">
+                    <label class="tuss-label">Novo Email</label>
+                    <input type="email" id="editEmail" class="tuss-input">
+                </div>
+
+                <div class="tuss-form-group" id="groupPassword" style="display:none;">
+                    <label class="tuss-label">Nova Password</label>
+                    <input type="password" id="editPassword" class="tuss-input" placeholder="Nova senha segura">
+                </div>
+
+                <div class="tuss-form-group" id="groupRole" style="display:none;">
+                    <label class="tuss-label">Novo Cargo</label>
+                    <select id="editRole" class="tuss-input">
+                        <option value="staff">Motorista (Staff)</option>
+                        <option value="highrank">Administração</option>
+                        <option value="passenger">Passageiro</option>
+                        <option value="owner">Owner</option>
+                    </select>
+                </div>
+
+                <p id="editFeedback" class="tuss-feedback"></p>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="resetEditModal()">Voltar</button>
+                    <button type="submit" class="tuss-btn-submit btn-blue">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="tuss-modal-overlay">
+        <div class="tuss-modal-box text-center">
+            <div class="modal-icon">⚠️</div>
+            <h2 class="tuss-modal-title text-red">Tem a certeza?</h2>
+            <p class="modal-text">Esta ação irá remover o utilizador permanentemente. Não pode ser revertida.</p>
+            
+            <div class="modal-actions center">
                 <button class="btn-cancel" onclick="closeDeleteModal()">Cancelar</button>
                 <button id="confirmDeleteBtn" class="btn-danger">Sim, Eliminar</button>
             </div>
@@ -104,8 +173,6 @@
 
     <script src="../../scripts/auth.js"></script>
     <script src="../../scripts/backoffice.js"></script>
-    
     <script src="../../scripts/script.js"></script> 
-    <script src="../../scripts/lang-switch.js"></script>
 </body>
 </html>

@@ -1,12 +1,11 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({settings: {strict: true}}) // Mudamos para TRUE para o MySQL não reclamar
 export class User extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: false,
-    defaultFn: 'uuidv4',
+    generated: true,
   })
   id?: string;
 
@@ -24,6 +23,7 @@ export class User extends Entity {
 
   @property({
     type: 'string',
+    // Não pomos 'required: true' aqui para evitar problemas em updates parciais
   })
   robloxUsername?: string;
 
@@ -39,14 +39,11 @@ export class User extends Entity {
   })
   status?: string;
 
-
   constructor(data?: Partial<User>) {
     super(data);
   }
 }
 
-export interface UserRelations {
-  // describe navigational properties here
-}
+export interface UserRelations {}
 
 export type UserWithRelations = User & UserRelations;

@@ -1,19 +1,24 @@
-/* --- CONFIGURAÇÃO GERAL --- */
+/* =========================================
+   1. CONFIGURAÇÃO GERAL
+   ========================================= */
 .admin-main {
-    padding-top: 40px;
-    padding-bottom: 80px;
-    min-height: 80vh; /* Empurra o footer para baixo */
-    font-family: var(--font-main, sans-serif); /* Usa a fonte do site */
+    padding-top: 50px;
+    padding-bottom: 100px;
+    min-height: 85vh;
+    font-family: var(--font-main, sans-serif);
+    background-color: #f8f9fa; /* Fundo ligeiro para contraste */
 }
 
-/* --- CABEÇALHO --- */
+/* =========================================
+   2. HEADER DA PÁGINA
+   ========================================= */
 .admin-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
 }
 
 .admin-header h1 {
@@ -21,39 +26,47 @@
     font-family: var(--font-display, sans-serif);
     font-size: 2.2rem;
     margin: 0;
+    font-weight: 700;
 }
 
 .admin-header p {
     color: #666;
     margin-top: 5px;
+    font-size: 1rem;
 }
 
-/* Botão Principal (Verde TUSS) */
-.btn-add-user {
+/* Botão de Ação Principal */
+.btn-primary-action {
     background-color: var(--color-primary, #00994d);
-    color: var(--color-dark, #000); /* Ajuste se o teu verde pedir texto branco */
+    color: var(--color-dark, #000); /* Ajustar se preferir texto branco */
     border: none;
-    padding: 12px 24px;
+    padding: 12px 26px;
     border-radius: 8px;
     font-weight: 700;
     cursor: pointer;
     font-family: var(--font-main, sans-serif);
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 153, 77, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.btn-add-user:hover {
+.btn-primary-action:hover {
     transform: translateY(-2px);
-    filter: brightness(1.1);
+    box-shadow: 0 6px 20px rgba(0, 153, 77, 0.3);
+    filter: brightness(1.05);
 }
 
-/* --- TABELA --- */
+/* =========================================
+   3. TABELA DE DADOS
+   ========================================= */
 .table-card {
     background: var(--color-white, #fff);
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    overflow: hidden; /* Arredonda os cantos da tabela */
-    border: 1px solid #eee;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border: 1px solid #eaeaea;
 }
 
 .admin-table {
@@ -62,143 +75,278 @@
     text-align: left;
 }
 
-/* Cabeçalho da Tabela - Herda o VERDE da Navbar */
 .admin-table th {
     background-color: var(--color-primary, #00994d);
     color: var(--color-dark, #000); 
-    padding: 18px 20px;
+    padding: 20px 25px;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
 }
 
 .admin-table td {
-    padding: 16px 20px;
+    padding: 18px 25px;
     border-bottom: 1px solid #f0f0f0;
     color: var(--color-text, #333);
     vertical-align: middle;
+    font-size: 0.95rem;
 }
 
-.admin-table tr:hover {
-    background-color: #fafafa;
-}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover { background-color: #fafbfc; }
 
-/* --- BADGES (Etiquetas de Cargo) --- */
+/* Badges (Etiquetas) */
 .badge {
     padding: 6px 14px;
     border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     display: inline-block;
     min-width: 90px;
     text-align: center;
+    letter-spacing: 0.5px;
 }
 
-/* Cores específicas pedidas */
-.badge-owner {
-    background-color: #e74c3c; /* Vermelho */
-    color: white;
-}
+.badge-owner { background-color: rgba(231, 76, 60, 0.15); color: #c0392b; border: 1px solid rgba(231, 76, 60, 0.2); }
+.badge-staff { background-color: rgba(241, 196, 15, 0.15); color: #d35400; border: 1px solid rgba(241, 196, 15, 0.3); }
+.badge-passenger { background-color: #f1f2f6; color: #7f8c8d; border: 1px solid #dfe4ea; }
 
-.badge-staff {
-    background-color: #f1c40f; /* Amarelo */
-    color: #333; /* Texto escuro para ler bem no amarelo */
-}
-
-.badge-passenger {
-    background-color: #ecf0f1; /* Cinza Claro */
-    color: #7f8c8d;
-}
-
-/* --- LOADING & MODAL BTNS --- */
-#loadingMessage {
-    text-align: center;
-    padding: 40px;
-    color: #888;
-    display: none;
-}
-
-.btn-danger {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-.btn-danger:hover { background-color: #c0392b; }
-
-.btn-cancel {
-    background-color: #f1f2f6;
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-}
-.btn-cancel:hover { background-color: #dfe4ea; }
-
-/* Botão Eliminar na Tabela (Discreto) */
-.btn-delete {
+/* Ações na Tabela */
+.btn-edit, .btn-delete {
     background: transparent;
-    border: 1px solid #e74c3c;
-    color: #e74c3c;
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 600;
     transition: all 0.2s;
-}
-.btn-delete:hover {
-    background: #e74c3c;
-    color: white;
+    border: 1px solid transparent;
 }
 
-/* --- RESPONSIVIDADE (MOBILE) --- */
+.btn-edit { color: #3498db; border-color: #3498db; margin-right: 6px; }
+.btn-edit:hover { background: #3498db; color: white; }
+
+.btn-delete { color: #e74c3c; border-color: #e74c3c; }
+.btn-delete:hover { background: #e74c3c; color: white; }
+
+/* Loading Spinner */
+#loadingMessage {
+    display: none; /* JS controla isto */
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    color: #888;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--color-primary, #00994d);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+
+/* =========================================
+   4. MODAIS (JANELAS POP-UP)
+   ========================================= */
+.tuss-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px); /* Efeito moderno */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.tuss-modal-overlay.open { opacity: 1; visibility: visible; pointer-events: all; }
+
+.tuss-modal-box {
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    position: relative;
+    transform: translateY(30px);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tuss-modal-overlay.open .tuss-modal-box { transform: translateY(0); }
+
+.tuss-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+}
+.tuss-close-btn:hover { color: #333; }
+
+.tuss-modal-title {
+    margin-top: 0;
+    color: #222;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.modal-subtitle, .modal-text {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Formulários & Inputs */
+.tuss-form-group { margin-bottom: 18px; }
+.tuss-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.tuss-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.tuss-input:focus {
+    outline: none;
+    border-color: var(--color-primary, #00994d);
+    box-shadow: 0 0 0 3px rgba(0, 153, 77, 0.1);
+}
+
+/* Botões do Modal */
+.tuss-btn-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--color-primary, #00994d);
+    color: var(--color-dark, #000);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: transform 0.2s, filter 0.2s;
+}
+.tuss-btn-submit:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.btn-blue { background-color: #3498db; color: white; }
+.btn-danger { background-color: #e74c3c; color: white; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-cancel { background-color: #f1f2f6; color: #555; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+
+.btn-danger:hover { background: #c0392b; }
+.btn-cancel:hover { background: #dfe4ea; }
+
+.modal-actions { display: flex; gap: 12px; margin-top: 20px; }
+.modal-actions.center { justify-content: center; }
+.modal-actions button { flex: 1; margin: 0; }
+
+/* --- WIZARD DE EDIÇÃO --- */
+.edit-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.edit-option input { display: none; }
+.option-box {
+    display: block;
+    padding: 16px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fafafa;
+}
+
+.edit-option input:checked + .option-box {
+    border-color: #3498db;
+    background-color: #eaf6ff;
+    color: #3498db;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.15);
+}
+
+.tuss-feedback {
+    text-align: center;
+    font-size: 0.9rem;
+    min-height: 20px;
+    margin: 10px 0;
+    font-weight: 600;
+}
+.text-green { color: #27ae60; }
+.text-red { color: #e74c3c; }
+.text-blue { color: #3498db; }
+.modal-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+
+
+/* =========================================
+   5. RESPONSIVIDADE (MOBILE)
+   ========================================= */
 @media (max-width: 768px) {
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .btn-add-user {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
+    .admin-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .btn-primary-action { width: 100%; justify-content: center; }
 
-    /* Tabela vira Cards */
+    /* Transformar tabela em Cards */
     .admin-table thead { display: none; }
     
     .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
-        display: block;
-        width: 100%;
+        display: block; width: 100%;
     }
 
     .admin-table tr {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         background: white;
         border: 1px solid #eee;
         border-radius: 12px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        padding: 20px;
     }
 
     .admin-table td {
-        padding: 8px 0;
+        padding: 10px 0;
         border: none;
         display: flex;
         justify-content: space-between;
         align-items: center;
         text-align: right;
+        border-bottom: 1px dashed #f0f0f0;
     }
 
-    /* Labels automáticas */
+    .admin-table td:last-child { border-bottom: none; padding-top: 15px; justify-content: center; gap: 10px; }
+
     .admin-table td:before {
         content: attr(data-label);
         font-weight: 700;
@@ -206,15 +354,5 @@
         font-size: 0.85rem;
     }
 
-    .admin-table td:last-child {
-        margin-top: 10px;
-        padding-top: 15px;
-        border-top: 1px solid #f0f0f0;
-        justify-content: center;
-    }
-    
-    .btn-delete {
-        width: 100%;
-        padding: 10px;
-    }
+    .btn-edit, .btn-delete { flex: 1; text-align: center; justify-content: center; display: flex; }
 }
