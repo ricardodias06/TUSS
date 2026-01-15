@@ -1,0 +1,174 @@
+/* Herda fontes e cores globais do styles.css */
+
+.login-wrapper {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        
+        url('../assets/game-screenshots/bus-cimo-vila.png');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Cartão Principal */
+.auth-card {
+    background: var(--color-white, #fff);
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra suave */
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+}
+
+/* --- ABAS (TABS) --- */
+.auth-tabs {
+    display: flex;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 18px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: #888;
+    font-family: var(--font-main, sans-serif);
+    font-size: 1rem;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: var(--color-dark, #333);
+    background-color: #f1f2f3;
+}
+
+/* Aba Ativa */
+.tab-btn.active {
+    background: var(--color-white, #fff);
+    color: var(--color-primary, #00994d); /* Verde TUSS */
+    border-bottom: 3px solid var(--color-primary, #00994d);
+}
+
+/* --- FORMULÁRIOS --- */
+.auth-form {
+    padding: 35px;
+    display: none; /* Escondido por defeito */
+    animation: fadeIn 0.4s ease;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: var(--color-dark, #111);
+    font-family: var(--font-display, sans-serif);
+    font-size: 1.8rem;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-top: 8px;
+}
+
+/* Inputs */
+.input-group { margin-bottom: 20px; }
+
+.input-group label { 
+    display: block; 
+    font-weight: 700; 
+    font-size: 0.9rem; 
+    color: var(--color-dark, #333); 
+    margin-bottom: 8px; 
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-main, sans-serif);
+    transition: border 0.2s, box-shadow 0.2s;
+    background-color: #fff;
+    color: var(--color-text, #333);
+}
+
+.input-group input:focus { 
+    border-color: var(--color-primary, #00994d); 
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(0, 153, 77, 0.1); /* Brilho verde suave */
+}
+
+/* Botão Principal */
+.btn-primary-full {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-primary, #00994d);
+    color: var(--color-dark, #000); /* Verifique se prefere texto branco ou preto no verde */
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-family: var(--font-main, sans-serif);
+    transition: transform 0.2s, filter 0.2s;
+    margin-top: 10px;
+}
+
+.btn-primary-full:hover { 
+    transform: translateY(-2px); 
+    filter: brightness(1.1); 
+}
+
+/* Feedback (Mensagens de erro/sucesso) */
+.feedback-msg { 
+    font-size: 0.9rem; 
+    min-height: 20px; 
+    margin-bottom: 15px; 
+    text-align: center; 
+    font-weight: 600;
+}
+
+.text-green { color: #27ae60; }
+.text-red { color: #e74c3c; }
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .auth-card {
+        border-radius: 12px;
+        box-shadow: none;
+        border: none;
+    }
+    .login-wrapper {
+        padding: 20px 10px;
+        background-color: #fff; /* Fundo branco em mobile para parecer app */
+    }
+    .auth-form {
+        padding: 20px;
+    }
+}

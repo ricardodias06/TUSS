@@ -1,5 +1,25 @@
 /* ================================================
-   RESET BÁSICO
+   1. VARIÁVEIS GERAIS (Configuração)
+================================================ */
+:root {
+  /* Cores da Marca */
+  --color-primary: #B1D566;    /* O verde TUSS */
+  --color-dark: #333333;       /* Cinzento escuro */
+  --color-text: #222222;       /* Texto principal */
+  --color-bg: #f4f4f4;         /* Fundo do site */
+  --color-white: #ffffff;
+  
+  /* Cores de Feedback */
+  --color-success: #27ae60;
+  --color-error: #c0392b;
+  --color-info: #2980b9;
+
+  /* Tipografia */
+  --font-main: "Funnel Display", sans-serif;
+}
+
+/* ================================================
+   2. RESET & BASE
 ================================================ */
 * {
   margin: 0;
@@ -7,26 +27,179 @@
   box-sizing: border-box;
 }
 
-/* ================================================
-   TIPOGRAFIA E BODY
-================================================ */
 html, body {
   height: 100%;
-  font-family: "Funnel Display", sans-serif;
-  background: #f4f4f4;
-  color: #222;
+  font-family: var(--font-main);
+  background: var(--color-bg);
+  color: var(--color-text);
   display: flex;
   flex-direction: column;
+  line-height: 1.6;
 }
-
-h1, h2, h3, h4 { font-weight: 700; }
-p, li, a { font-weight: 400; }
 
 /* ================================================
-   MAIN
+   3. TIPOGRAFIA
+================================================ */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+p, li, a {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================================================
+   4. LAYOUT PRINCIPAL
 ================================================ */
 main {
-  flex: 1;
+  flex: 1; /* Garante que o footer fica sempre em baixo */
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
+
+/* Contentor padrão para centrar conteúdo nas páginas */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+}
+
+/* ================================================
+   5. LOGIN MODAL (Área Cliente)
+================================================ */
+
+/* Fundo escuro (Overlay) */
+.tuss-modal-overlay {
+  display: none; /* Escondido por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10000; /* Fica acima de tudo */
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px); /* Efeito desfocado ligeiro */
+}
+
+/* Classe ativada via JS para mostrar o modal */
+.tuss-modal-overlay.open {
+  display: flex;
+}
+
+/* A Caixa Branca */
+.tuss-modal-box {
+  background: var(--color-white);
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Título do Modal */
+.tuss-modal-title {
+  margin-top: 0;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+}
+
+/* Botão de Fechar (X) */
+.tuss-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 28px;
+  color: #999;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.tuss-close-btn:hover {
+  color: var(--color-dark);
+}
+
+/* Campos do Formulário */
+.tuss-form-group {
+  margin-bottom: 15px;
+}
+
+.tuss-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--color-dark);
+  font-size: 0.9rem;
+}
+
+.tuss-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.tuss-input:focus {
+  outline: none;
+  border-color: var(--color-dark);
+}
+
+/* Mensagens de Feedback (Erro/Sucesso) */
+.tuss-feedback {
+  font-size: 0.9rem;
+  min-height: 25px;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* Botão de Entrar */
+.tuss-btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--color-dark);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.tuss-btn-submit:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+/* Animação de Entrada */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================
+   6. UTILITÁRIOS DE COR (Usados no JS)
+================================================ */
+.text-blue { color: var(--color-info); }
+.text-green { color: var(--color-success); }
+.text-red { color: var(--color-error); }

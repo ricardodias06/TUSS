@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUSS &bull; Autenticação</title>
+    
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="../../styles/components/navbar.css">
+    <link rel="stylesheet" href="../../styles/components/footer.css">
+    
+    <link rel="stylesheet" href="../../styles/login.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <main class="login-wrapper">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">Entrar</button>
+                <button class="tab-btn" onclick="switchTab('register')">Criar Conta</button>
+            </div>
+
+            <form id="loginForm" class="auth-form active">
+                <div class="form-header">
+                    <h2>Bem-vindo de volta</h2>
+                    <p>Aceda à sua área privada.</p>
+                </div>
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="oseuemail@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+
+                <p id="loginFeedback" class="feedback-msg"></p>
+                <button type="submit" class="btn-primary-full">Entrar</button>
+            </form>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-header">
+                    <h2>Fique a par das novidades</h2>
+                    <p>Crie uma conta num instante!</p>
+                </div>
+
+                <div class="input-group">
+                    <label>Roblox Username</label>
+                    <input type="text" id="regUsername" placeholder="username" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="oseuemail@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+
+                <p id="regFeedback" class="feedback-msg"></p>
+                <button type="submit" class="btn-primary-full">Criar Conta</button>
+            </form>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../../scripts/script.js"></script> <script src="../../scripts/auth.js"></script>   <script src="../../scripts/login-page.js"></script> <script src="../../scripts/lang-switch.js"></script>
+</body>
+</html>
