@@ -21,10 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("navbar-container").innerHTML = data;
       console.debug("[script.js] navbar carregada");
 
-      // Inicializar botão de idioma (só depois de inserir o navbar)
+      // 1. Inicializar botão de idioma
       initLangSwitch();
 
-      // Menu hambúrguer (caso usees depois)
+      // 2. Inicializar botão de Login/Área Cliente (A TUA CORREÇÃO)
+      initLoginButton();
+
+      // Menu hambúrguer (caso uses depois)
       const toggle = document.getElementById("navbar-toggle");
       const links = document.getElementById("navbar-links");
       toggle?.addEventListener("click", () => {
@@ -67,6 +70,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// ---------- Lógica do Botão "Área Cliente" ----------
+function initLoginButton() {
+  const btn = document.getElementById("navLoginBtn");
+  if (!btn) return;
+
+  // Verifica se existe token guardado (login feito)
+  // Usamos localStorage direto porque o auth.js pode não estar nesta página
+  const token = localStorage.getItem("authToken");
+  
+  // Caminhos absolutos para garantir que funciona em qualquer pasta
+  const loginPath = "/pages/pt/login.html";
+  const hubPath = "/pages/pt/hub.html";
+
+  if (token) {
+    // --- ESTADO: LOGADO ---
+    btn.classList.add("logged-in"); // Fica verde (definido no CSS)
+    
+    // Ajusta o texto conforme o idioma atual do botão
+    if (btn.textContent.toLowerCase().includes("client")) {
+        btn.textContent = "My Hub";
+    } else {
+        btn.textContent = "Meu Hub";
+    }
+    
+    // Clique leva ao Hub
+    btn.addEventListener("click", () => {
+      window.location.href = hubPath;
+    });
+
+  } else {
+    // --- ESTADO: NÃO LOGADO ---
+    // Clique leva ao Login
+    btn.addEventListener("click", () => {
+      window.location.href = loginPath;
+    });
+  }
+}
 
 // ---------- Função de inicialização do botão de idioma ----------
 function initLangSwitch() {
@@ -76,15 +116,8 @@ function initLangSwitch() {
     return;
   }
 
-  // Evitar multiple bindings caso a função seja chamada mais que uma vez
-  if (langBtn.dataset.langAttached === "1") {
-    console.debug("[initLangSwitch] listener já anexado, abortando re-attach.");
-    // Atualiza texto do botão só por segurança
-    updateLangButtonText(langBtn);
-    return;
-  }
+  if (langBtn.dataset.langAttached === "1") return;
 
-  // Mapas PT ↔ EN
   const ptToEn = {
     "index.html": "index.html",
     "linhas.html": "lines.html",
@@ -92,68 +125,39 @@ function initLangSwitch() {
     "paragem.html": "stop.html",
     "alteracoes-de-servico.html": "service-changes.html",
     "tarifario.html": "tariff.html",
-    "acessibilidade.html": "accessibility.html"
+    "acessibilidade.html": "accessibility.html",
+    "login.html": "login.html", // Adicionado caso queiras login em EN
+    "hub.html": "hub.html"
   };
   const enToPt = Object.fromEntries(Object.entries(ptToEn).map(([pt, en]) => [en, pt]));
 
-  // Atualiza o texto do botão ao carregar
   updateLangButtonText(langBtn);
-
-  // Marca como iniciado
   langBtn.dataset.langAttached = "1";
 
-  // Listener de clique: calcula idioma na hora do clique (robusto)
   langBtn.addEventListener("click", () => {
-    const parts = window.location.pathname.split("/"); // exemplo: ["", "pages", "pt", "linhas.html"]
+    const parts = window.location.pathname.split("/");
     const langIdx = parts.findIndex(seg => seg === "pt" || seg === "en");
     const currentLang = langIdx !== -1 ? parts[langIdx] : (window.location.pathname.includes("/en/") ? "en" : "pt");
     const fileName = parts[parts.length - 1] || "index.html";
 
-    console.debug("[lang-switch] clique detectado", { currentLang, fileName, parts });
-
     let targetFile;
     if (currentLang === "pt") {
       targetFile = ptToEn[fileName];
-      if (!targetFile) {
-        alert("There is no english version of this page.");
-        return;
-      }
-      // Substitui /pt/ por /en/ (se existir), senão insere após 'pages'
-      if (langIdx !== -1) {
-        parts[langIdx] = "en";
-      } else {
-        const pagesIdx = parts.findIndex(seg => seg === "pages");
-        if (pagesIdx !== -1) parts.splice(pagesIdx + 1, 0, "en");
-        else parts.splice(1, 0, "en"); // fallback: insere logo após raiz
-      }
-      parts[parts.length - 1] = targetFile;
-    } else if (currentLang === "en") {
-      targetFile = enToPt[fileName];
-      if (!targetFile) {
-        alert("There is no portuguese version of this page.");
-        return;
-      }
-      if (langIdx !== -1) {
-        parts[langIdx] = "pt";
-      } else {
-        const pagesIdx = parts.findIndex(seg => seg === "pages");
-        if (pagesIdx !== -1) parts.splice(pagesIdx + 1, 0, "pt");
-        else parts.splice(1, 0, "pt");
-      }
+      if (!targetFile) { alert("There is no english version of this page."); return; }
+      if (langIdx !== -1) parts[langIdx] = "en";
+      else parts.splice(1, 0, "en");
       parts[parts.length - 1] = targetFile;
     } else {
-      alert("Page language unknown, operation canceled.");
-      return;
+      targetFile = enToPt[fileName];
+      if (!targetFile) { alert("There is no portuguese version of this page."); return; }
+      if (langIdx !== -1) parts[langIdx] = "pt";
+      else parts.splice(1, 0, "pt");
+      parts[parts.length - 1] = targetFile;
     }
 
-    const newPath = parts.join("/");
-    console.debug("[lang-switch] redirecionando para:", newPath);
-    // Redireciona para o novo caminho (relativo absoluto)
-    window.location.href = newPath;
+    window.location.href = parts.join("/");
   });
 
-
-  // Helper para atualizar o texto do botão (mostra o idioma que será carregado ao clicar)
   function updateLangButtonText(btn) {
     const parts = window.location.pathname.split("/");
     const langIdx = parts.findIndex(seg => seg === "pt" || seg === "en");

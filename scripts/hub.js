@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof requireAuth === 'function') {
         requireAuth();
     } else {
-        // Fallback caso o auth.js não carregue
         if (!localStorage.getItem('authToken')) window.location.href = 'login.html';
     }
 
@@ -31,12 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function updateHubInterface(user) {
-    // --- ELEMENTOS DO DOM (Definidos aqui dentro para não dar erro) ---
     const greetingEl = document.querySelector('.hub-greeting h1');
     const nameEl = document.getElementById('user-name');
     const roleEl = document.getElementById('user-role');
     const idEl = document.getElementById('user-id');
-    const avatarEl = document.getElementById('user-avatar'); // <--- Aqui é que ele é definido!
+    const avatarEl = document.getElementById('user-avatar');
 
     // --- SAUDAÇÃO ---
     if (greetingEl) {
@@ -50,46 +48,42 @@ function updateHubInterface(user) {
 
     // --- DADOS BÁSICOS ---
     if (nameEl) nameEl.textContent = user.displayName || user.robloxUsername;
+    
+    // Mostra o Staff ID se existir, senão mostra o ID interno (1)
     if (idEl) idEl.textContent = `ID: ${user.staffId || user.id}`;
 
-    // --- CARGOS ---
+    // --- CORREÇÃO DOS CARGOS ---
     if (roleEl) {
-        let roleName = "Passageiro";
-        if (user.role === 'owner') roleName = "Direção Executiva";
-        else if (user.role === 'staff') roleName = "Staff Operacional";
-        roleEl.textContent = roleName;
+        // Agora usamos diretamente o rank que vem da Base de Dados!
+        // Se não tiver rank, assumimos Passageiro.
+        roleEl.textContent = user.rank || "Passageiro";
     }
 
-    // --- LÓGICA DO AVATAR (Via Backend TUSS) ---
+    // --- AVATAR ---
     if (avatarEl) {
         const defaultAvatar = "../../assets/svg-icons/user.svg";
         const robloxId = String(user.robloxId);
 
-        // Se o ID for válido, pede ao nosso Backend para resolver a imagem
         if (robloxId && robloxId !== "000000" && robloxId !== "undefined") {
-            
-            // Usamos a constante global API_BASE_URL definida no auth.js
-            // Se der erro aqui, certifica-te que o auth.js é carregado ANTES do hub.js no HTML
-            const baseUrl = (typeof API_BASE_URL !== 'undefined') ? API_BASE_URL : "http://localhost:3000";
+            const baseUrl = (typeof API_BASE_URL !== 'undefined') ? API_BASE_URL : "http://localhost:3001";
             const proxyUrl = `${baseUrl}/roblox/avatar/${robloxId}`;
-            
-            console.log("Pedindo avatar ao Backend:", proxyUrl);
             avatarEl.src = proxyUrl;
-
-            // Se o backend falhar ou demorar, volta ao SVG
-            avatarEl.onerror = () => {
-                console.warn("Backend não conseguiu a imagem. A usar SVG.");
-                avatarEl.src = defaultAvatar;
-            };
+            avatarEl.onerror = () => { avatarEl.src = defaultAvatar; };
         } else {
-            // Sem ID Roblox -> Usa SVG direto
             avatarEl.src = defaultAvatar;
         }
     }
 
-    // --- BACKOFFICE ---
+    // --- BACKOFFICE (Acesso ao Painel Admin) ---
     const adminPanel = document.getElementById('admin-panel-card');
     if (adminPanel) {
-        adminPanel.style.display = (user.role === 'owner' || user.role === 'staff') ? 'flex' : 'none';
+        // Mostra o painel se o rank NÃO for Passageiro ou indefinido
+        const rank = (user.rank || "").toLowerCase();
+        
+        // Lista de palavras-chave que dão acesso ao painel
+        const allowed = ['head', 'operations', 'direção', 'admin', 'staff', 'owner'];
+        
+        const hasAccess = allowed.some(keyword => rank.includes(keyword));
+        adminPanel.style.display = hasAccess ? 'flex' : 'none';
     }
 }

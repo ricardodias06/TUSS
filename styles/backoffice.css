@@ -214,10 +214,32 @@ body {
 .tuss-table th { background-color: var(--tuss-gray); font-weight: 600; color: #555; }
 .tuss-table tr:last-child td { border-bottom: none; }
 
-.status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
-.bg-success { background-color: #2ecc71; }
-.bg-warning { background-color: #f1c40f; }
-.bg-danger { background-color: #e74c3c; }
+/* --- CORES DE ESTADO (CORRIGIDO) --- */
+.status-dot { 
+    height: 10px; 
+    width: 10px; 
+    border-radius: 50%; 
+    display: inline-block; 
+    margin-right: 8px; /* Mais espaçamento para respirar */
+}
+
+/* Verde (In Service) */
+.bg-success { 
+    background-color: #27ae60; 
+    box-shadow: 0 0 5px rgba(39, 174, 96, 0.5); /* Brilho suave */
+}
+
+/* Amarelo (Repairing) */
+.bg-warning { 
+    background-color: #f39c12; 
+    box-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+}
+
+/* Vermelho (Scrapped) */
+.bg-danger { 
+    background-color: #c0392b; 
+    box-shadow: 0 0 5px rgba(192, 57, 43, 0.5);
+}
 
 /* --- DEFINIÇÕES (GRID) --- */
 .settings-grid {

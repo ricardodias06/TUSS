@@ -1,32 +1,34 @@
 import {inject} from '@loopback/core';
-import {
-  TokenServiceBindings,
-} from '@loopback/authentication-jwt';
-import {UserProfile, securityId} from '@loopback/security';
-import {post, requestBody, response, HttpErrors} from '@loopback/rest';
 import {repository} from '@loopback/repository';
-import {UserRepository} from '../repositories';
-import * as bcrypt from 'bcryptjs';
+import {
+  post,
+  requestBody,
+  response,
+  HttpErrors,
+} from '@loopback/rest';
+import {TokenServiceBindings} from '@loopback/authentication-jwt';
 import {TokenService} from '@loopback/authentication';
+import {UserProfile, securityId} from '@loopback/security';
+import {UserRepository} from '../repositories';
+import {compare} from 'bcryptjs';
 
 export class LoginController {
   constructor(
     @inject(TokenServiceBindings.TOKEN_SERVICE)
     public jwtService: TokenService,
     @repository(UserRepository)
-    protected userRepository: UserRepository,
+    public userRepository: UserRepository,
   ) {}
 
   @post('/login')
   @response(200, {
-    description: 'Token JWT e dados de utilizador',
+    description: 'Token de acesso',
     content: {
       'application/json': {
         schema: {
           type: 'object',
           properties: {
             token: {type: 'string'},
-            user: {type: 'object'}, // Adicionámos o objeto user aqui
           },
         },
       },
@@ -47,54 +49,48 @@ export class LoginController {
         },
       },
     })
-    credentials: any,
+    credentials: {username: string; password: string},
   ): Promise<{token: string; user: any}> {
-    // 1. Procurar o utilizador
+    
+    // 1. Procurar utilizador e incluir o Rank
     const user = await this.userRepository.findOne({
       where: {robloxUsername: credentials.username},
-      // include: [{relation: 'rank'}], // Descomenta se quiseres enviar dados do rank
+      include: [{relation: 'rank'}] 
     });
 
     if (!user) {
-      throw new HttpErrors.Unauthorized('Utilizador não encontrado');
+      throw new HttpErrors.Unauthorized('Utilizador não encontrado.');
     }
 
-    // 2. Verificar a password
-    const passwordMatched = await bcrypt.compare(
-      credentials.password,
-      user.password,
-    );
-
+    // 2. Verificar password
+    const passwordMatched = await compare(credentials.password, user.password);
     if (!passwordMatched) {
-      throw new HttpErrors.Unauthorized('Password incorreta');
+      throw new HttpErrors.Unauthorized('Password incorreta.');
     }
 
-    // 3. Gerar o Token
+    // 3. Gerar Token
     const userProfile: UserProfile = {
-      [securityId]: user.id!.toString(),
+      [securityId]: user.id?.toString() || '',
       name: user.displayName,
-      id: user.id,
+      id: user.id?.toString(),
+      email: user.robloxUsername
     };
-
+    
     const token = await this.jwtService.generateToken(userProfile);
 
-    // 4. Lógica de Adaptação para o Frontend (HUB)
-    // O site espera um 'role' (string) mas a DB tem 'rankId' (número).
-    let role = 'passenger'; // Valor por defeito
+    // 4. Retornar TUDO (Correção Aqui)
+    // Agora enviamos o staffId e o robloxId explicitamente
+    const userWithRank = user as any;
 
-    if (user.rankId === 1) {
-      role = 'owner'; // Acesso total
-    } else if (user.rankId && user.rankId <= 5) {
-      role = 'staff'; // Acesso intermédio
-    }
-
-    // Retornamos tudo o que o site precisa para funcionar
     return {
       token,
       user: {
-        ...user,
-        role: role, // O campo mágico que ativa o Backoffice no site
-        email: user.robloxUsername + "@tuss.pt" // Fake email para compatibilidade
+        id: user.id, // ID interno (1)
+        staffId: user.staffId, // ID Público (6002) <--- O QUE FALTAVA
+        displayName: user.displayName,
+        robloxUsername: user.robloxUsername,
+        robloxId: user.robloxId,
+        rank: userWithRank.rank?.name || 'Passageiro'
       }
     };
   }

@@ -54,5 +54,12 @@ export class BackendTussApplication extends BootMixin(
         nested: true,
       },
     };
+
+    this.bind('rest.cors').to({
+      origin: ['http://localhost:3000'],
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      credentials: true,
+    });
+
   }
 }

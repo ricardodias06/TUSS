@@ -1,4 +1,4 @@
-const API_BASE_LOGIN = "http://localhost:3000"; // Porta do LoopBack
+const API_BASE_LOGIN = "http://localhost:3001"; // Porta do LoopBack
 
 function switchTab(tab) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));

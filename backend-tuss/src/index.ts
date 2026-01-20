@@ -15,16 +15,21 @@ export async function main(options: ApplicationConfig = {}) {
 }
 
 if (require.main === module) {
-  // Run the application
   const config = {
     rest: {
-      port: +(process.env.PORT ?? 3000),
-      host: process.env.HOST,
-      // The `gracePeriodForClose` provides a graceful close for http/https servers
-      gracePeriodForClose: 5000, // 5 seconds
+      port: +(process.env.PORT ?? 3001),
+      host: '127.0.0.1', // FORÇA IPv4 (Corrige problemas de localhost no Windows)
+      gracePeriodForClose: 5000,
       openApiSpec: {
-        // useful when used with OpenAPI-to-GraphQL to locate your application
         setServersFromRequest: true,
+      },
+      cors: {
+        origin: '*', // Permite qualquer site (Frontend)
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+        maxAge: 86400,
+        credentials: false, // IMPORTANTE: Tem de ser false para usar origin '*' sem erros
       },
     },
   };

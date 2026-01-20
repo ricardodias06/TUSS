@@ -10,7 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     requireAuth();
     const user = getCurrentUser();
     
-    if (!user || (user.role !== 'owner' && user.role !== 'staff')) {
+    // --- LÓGICA DE PROTEÇÃO DE ACESSO ---
+    // Agora verifica pelo nome do Rank e não pela propriedade antiga 'role'
+    const rankName = (user.rank || "").toLowerCase();
+    
+    // Lista de palavras que dão acesso ao backoffice
+    const allowedRanks = ['head of operations', 'direção', 'admin', 'dono', 'staff', 'owner'];
+    
+    const hasPermission = allowedRanks.some(r => rankName.includes(r));
+
+    if (!user || !hasPermission) {
+        console.warn("Acesso negado. Rank atual:", user.rank);
         window.location.href = 'hub.html';
         return;
     }
@@ -24,15 +34,18 @@ function setupUI(user) {
     
     const avatarEl = document.getElementById('admin-avatar');
     if (user.robloxId && user.robloxId !== "000000") {
-        const baseUrl = (typeof API_BASE_URL !== 'undefined') ? API_BASE_URL : "http://localhost:3000";
+        const baseUrl = (typeof API_BASE_URL !== 'undefined') ? API_BASE_URL : "http://localhost:3001";
         avatarEl.src = `${baseUrl}/roblox/avatar/${user.robloxId}`;
     }
 
     // Forms Listeners
-    document.getElementById('busForm').addEventListener('submit', handleBusSubmit);
-    document.getElementById('simpleForm').addEventListener('submit', handleSimpleSubmit);
+    const busForm = document.getElementById('busForm');
+    if (busForm) busForm.addEventListener('submit', handleBusSubmit);
+
+    const simpleForm = document.getElementById('simpleForm');
+    if (simpleForm) simpleForm.addEventListener('submit', handleSimpleSubmit);
     
-    // Pre-load selects
+    // Pre-load selects (se existirem na página)
     loadDropdowns();
 }
 
@@ -54,7 +67,8 @@ window.switchSection = function(sectionId) {
 // --- GESTÃO DE FROTA ---
 async function loadFleetTable() {
     const tbody = document.querySelector('#fleet-table tbody');
-    // REMOVIDO STYLE INLINE: usa classe 'text-center'
+    if (!tbody) return;
+
     tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted">A carregar...</td></tr>`;
 
     try {
@@ -74,7 +88,6 @@ async function loadFleetTable() {
 
         buses.forEach(bus => {
             const tr = document.createElement('tr');
-            // REMOVIDO STYLE INLINE: usa classes 'btn-text btn-danger'
             tr.innerHTML = `
                 <td><strong>${bus.busNumber}</strong></td>
                 <td>${bus.licensePlate}</td>
@@ -102,6 +115,8 @@ async function loadSettings() {
 
 async function loadSettingList(type, listId) {
     const list = document.getElementById(listId);
+    if (!list) return;
+
     list.innerHTML = '<li class="text-muted">A carregar...</li>';
 
     try {
@@ -129,7 +144,6 @@ async function loadSettingList(type, listId) {
     }
 }
 
-// Resto das funções (Modals, Submits) mantêm-se iguais porque já usavam classes
 window.openSimpleModal = function(type) {
     document.getElementById('simpleItemType').value = type;
     document.getElementById('simpleItemName').value = '';
@@ -160,7 +174,7 @@ async function handleSimpleSubmit(e) {
     }
 }
 
-async function deleteSettingItem(type, id) {
+window.deleteSettingItem = async function(type, id) {
     if(!confirm("Tem a certeza?")) return;
     try {
         await apiRequest(`${ENDPOINTS[type]}/${id}`, { method: 'DELETE' });
@@ -169,7 +183,7 @@ async function deleteSettingItem(type, id) {
     } catch (e) {
         alert("Erro ao apagar.");
     }
-}
+};
 
 async function loadDropdowns() {
     try {
@@ -188,7 +202,9 @@ function fillSelect(id, items) {
     const el = document.getElementById(id);
     if(!el) return;
     el.innerHTML = '<option value="">Selecionar...</option>';
-    items.forEach(i => el.innerHTML += `<option value="${i.id}">${i.name}</option>`);
+    if (Array.isArray(items)) {
+        items.forEach(i => el.innerHTML += `<option value="${i.id}">${i.name}</option>`);
+    }
 }
 
 async function handleBusSubmit(e) {
@@ -211,18 +227,31 @@ async function handleBusSubmit(e) {
     } catch (err) { alert("Erro ao criar."); }
 }
 
-async function deleteBus(id) {
+window.deleteBus = async function(id) {
     if(!confirm("Apagar veículo?")) return;
     try { await apiRequest(`/buses/${id}`, { method: 'DELETE' }); loadFleetTable(); } catch(e) { alert("Erro ao apagar."); }
-}
+};
 
 function getStatusColor(s) {
-    if(!s) return '';
+    if (!s) return '';
     s = s.toLowerCase();
-    if(s.includes('operacional')) return 'bg-success';
-    if(s.includes('oficina') || s.includes('manutenção')) return 'bg-warning';
+
+    if (s.includes('in service') || s.includes('operacional') || s.includes('serviço')) {
+        return 'bg-success';
+    }
+
+    if (s.includes('repairing') || s.includes('oficina') || s.includes('manutenção')) {
+        return 'bg-warning';
+    }
+
     return 'bg-danger';
 }
 
-window.openModal = (id) => document.getElementById(id).classList.add('active');
-window.closeModal = (id) => document.getElementById(id).classList.remove('active');
+window.openModal = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+};
+window.closeModal = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+};
